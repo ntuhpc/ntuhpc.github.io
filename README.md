@@ -23,3 +23,13 @@ your browser automatically.
 ```bash
 $ gulp dev
 ```
+
+## Deployment
+
+After you modified the website, run the following command
+
+```bash
+$ gulp
+```
+
+This minifies all the files for you. Now you can commit and push it to GitHub.
