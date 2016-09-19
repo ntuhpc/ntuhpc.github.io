@@ -97,19 +97,6 @@
         </div>
     </section>
 
-    <!-- Download Section -->
-    <!-- <section id="download" class="content-section text-center">
-        <div class="download-section">
-            <div class="container">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h2>Download Grayscale</h2>
-                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
-                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
@@ -125,16 +112,13 @@
                     <li>
                         <a href="https://github.com/ntuhpc" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
-                    <!-- <li>
-                        <a href="https://plus.google.com/+Startbootstrap/posts" class="btn btn-default btn-lg"><i class="fa fa-google-plus fa-fw"></i> <span class="network-name">Google+</span></a>
-                    </li> -->
                 </ul>
             </div>
         </div>
     </section>
 
     <!-- Map Section -->
-    <!-- <div id="map"></div> -->
+     <div id="map"></div>
 
     <!-- Footer -->
     <footer>
@@ -153,7 +137,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+    <script>
+        var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 1.346269, lng: 103.683190},
+                zoom: 16,
+                disableDefaultUI: true,
+                draggable: false,
+                scrollwheel: false
+            });
+        }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap" async defer></script>
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
