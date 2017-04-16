@@ -55,11 +55,11 @@
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
-                     <li>
-                        <a href="blog">Blog</a>
-                    </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="blog">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +75,7 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <h1 class="brand-heading">NTU HPC</h1>
-                        <p class="intro-text">A team of passionate NTU students.</p>
+                        <p class="intro-text">compile(); optimize(); compute(); repeat();</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
                         </a>
@@ -90,9 +90,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>About NTU HPC</h2>
-                <p>NTU HPC is the only student supercomputing team in Singapore. We are a group of talented students who are passionate about high performance computing.</p>
+                <p>Nanyang Technological University High Performace Computing Team <br> is the only student supercomputing team in Singapore.</p>
                 <p>We particiate in major student cluster competitions like <a href="http://www.asc-events.org/">ASC</a>, <a href="http://www.isc-hpc.com/student-cluster-competition.html">ISC</a>, and <a href="http://www.studentclustercompetition.us/">SC</a>.</p>
-                <p>Besides that, we also have weekly training sessions in NTU to teach NTU students about high performance computing</p>
             </div>
         </div>
     </section>
@@ -103,12 +102,12 @@
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact NTU HPC</h2>
                 <p>Feel free to email us to know more about NTU HPC.</p>
-                <p><a href="mailto:SLIU019@e.ntu.edu.sg">SLIU019@e.ntu.edu.sg</a>
+                <p><a href="mailto:info@ntuhpc.org">info@ntuhpc.org</a>
                 </p>
                 <ul class="list-inline banner-social-buttons">
-                    <!-- <li>
-                        <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li> -->
+                    <li>
+                        <a href="https://twitter.com/realntuhpc" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                    </li> 
                     <li>
                         <a href="https://github.com/ntuhpc" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                     </li>
@@ -118,12 +117,12 @@
     </section>
 
     <!-- Map Section -->
-     <div id="map"></div>
+    <div id="map"></div>
 
     <!-- Footer -->
     <footer>
         <div class="container text-center">
-            <p>COPYRIGHT &copy; 2016 NTUHPC.ORG ALL RIGHTS RESERVED</p>
+            <p>COPYRIGHT &copy; 2016 - 2017 NTUHPC.ORG ALL RIGHTS RESERVED</p>
         </div>
     </footer>
 
@@ -141,7 +140,7 @@
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 1.346269, lng: 103.683190},
+                center: { lat: 1.346269, lng: 103.683190 },
                 zoom: 16,
                 disableDefaultUI: true,
                 draggable: false,
@@ -149,7 +148,8 @@
             });
         }
     </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap" async defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap"
+        async defer></script>
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
