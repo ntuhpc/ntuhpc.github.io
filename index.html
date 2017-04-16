@@ -55,11 +55,11 @@
                     <li>
                         <a class="page-scroll" href="#about">About</a>
                     </li>
-                     <li>
-                        <a href="blog">Blog</a>
-                    </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="blog">Blog</a>
                     </li>
                 </ul>
             </div>
@@ -118,7 +118,7 @@
     </section>
 
     <!-- Map Section -->
-     <div id="map"></div>
+    <div id="map"></div>
 
     <!-- Footer -->
     <footer>
@@ -141,7 +141,7 @@
         var map;
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 1.346269, lng: 103.683190},
+                center: { lat: 1.346269, lng: 103.683190 },
                 zoom: 16,
                 disableDefaultUI: true,
                 draggable: false,
@@ -149,7 +149,8 @@
             });
         }
     </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap" async defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap"
+        async defer></script>
 
     <!-- Theme JavaScript -->
     <script src="js/grayscale.min.js"></script>
