@@ -1,182 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Home page of the NTU HPC student cluster competition team">
     <meta name="author" content="NTU HPC">
 
     <title>NTU HPC</title>
 
-    <!-- Bootstrap Core CSS -->
+    <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom Fonts -->
+    <!-- Custom fonts for this template -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Cabin:700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:400,700|Nunito" rel="stylesheet">
 
-    <!-- Theme CSS -->
+    <!-- Custom styles for this template -->
     <link href="css/grayscale.min.css" rel="stylesheet">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  </head>
 
-</head>
-
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+  <body id="page-top">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    NTU HPC
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#history">History</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#internal">Internal</a>
-                    </li>
-                    <li>
-                        <a href="https://blog.ntuhpc.org">Blog</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">NTU HPC</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          Menu
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#history">History</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#internal">Internal</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://blog.ntuhpc.org">Blog</a>
+          </li>
+          </ul>
         </div>
-        <!-- /.container -->
+      </div>
     </nav>
 
     <!-- Intro Header -->
-    <header class="intro">
-        <div class="intro-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">NTU HPC</h1>
-                        <p class="intro-text">compile(); optimize(); compute(); repeat();</p>
-                        <a href="#about" class="btn btn-circle page-scroll">
-                            <i class="fa fa-angle-double-down animated"></i>
-                        </a>
-                    </div>
-                </div>
+    <header class="masthead">
+      <div class="intro-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <h1 class="brand-heading">NTU HPC</h1>
+              <p class="intro-text">compile(); optimize(); compute(); repeat();</p>
+              <a href="#about" class="btn btn-circle js-scroll-trigger">
+                <i class="fa fa-angle-double-down animated"></i>
+              </a>
             </div>
+          </div>
         </div>
+      </div>
     </header>
 
     <!-- About Section -->
-    <section id="about" class="container content-section text-center">
+    <section id="about" class="content-section text-center">
+      <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>About NTU HPC</h2>
-                <p>The <strong>Nanyang Technological University High Performace Computing Team</strong> (NTU HPC) is the only 
-                    student cluster competition team in Singapore. We particiate in major student cluster 
-                    competitions including <a href="http://www.asc-events.org/">ASC</a>, 
-                    <a href="http://www.isc-hpc.com/student-cluster-competition.html">ISC</a>, 
-                    and <a href="http://www.studentclustercompetition.us/">SC</a>.</p>
-                <p>In our team, you can find Linux power users, sysadmins, performance analysts, code optimizers,
-                    hardware specialists, and machine learning practitioners.</p>
-                <p>We host regular meetings every week to discuss various HPC related topics (e.g. Linux, parallel programming, and performance
-                    optimization) and prepare for the competitions.</p>
-                <p><small>NTU HPC is proudly sponsored by <a href="https://www.nscc.sg">National Supercomputing Centre (NSCC) Singapore</a>,
-                <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>,
-				<a href="http://www.jos.com">JOS</a>,
-                <a href="https://www.nvidia.com/page/home.html">NVIDIA</a>, and
-                <a href="https://www.mellanox.com">Mellanox Technologies</a>.</small></p>
-            </div>
+          <div class="col-lg-8 mx-auto">
+            <h2>About NTU HPC</h2>
+            <p>The <strong>Nanyang Technological University High Performace Computing Team</strong> (NTU HPC) is the only 
+                student cluster competition team in Singapore. We particiate in major student cluster 
+                competitions including <a href="http://www.asc-events.org/">ASC</a>, 
+                <a href="http://www.isc-hpc.com/student-cluster-competition.html">ISC</a>, 
+                and <a href="http://www.studentclustercompetition.us/">SC</a>.</p>
+            <p>In our team, you can find Linux power users, sysadmins, performance analysts, code optimizers,
+                hardware specialists, and machine learning practitioners.</p>
+            <p>We host regular meetings every week to discuss various HPC related topics (e.g. Linux, parallel programming, and performance
+                optimization) and prepare for the competitions.</p>
+            <p><small>NTU HPC is proudly sponsored by <a href="https://www.nscc.sg">National Supercomputing Centre (NSCC) Singapore</a>,
+            <a href="https://www.ntu.edu.sg">Nanyang Technological University</a>,
+    <a href="http://www.jos.com">JOS</a>,
+            <a href="https://www.nvidia.com/page/home.html">NVIDIA</a>, and
+            <a href="https://www.mellanox.com">Mellanox Technologies</a>.</small></p>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- History Section -->
-    <section id="history" class="container content-section">
+    <section id="history" class="content-section">
+      <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2 class="text-center">History</h2>
-                <dl class="dl-horizontal">
-                    <dt>SC17</dt>
-					<dd>Won both <strong>Highest LINPACK Award</strong> (breaking the world record with 51.77 TFLOPS/s, see <a href="https://top500.org/scc/">TOP500 SCC List</a>) and <strong>Overall Championship</strong>.</dd>
-                    <dt>ISC17</dt>
-                    <dd>Won <strong>Deep Learning Excellence Award</strong> and ranked 4th overall.</dd>
-                    <dt>SC16</dt>
-                    <dd>First appearance in SC. Ranked <strong>1st in secret application</strong> (GROMACS) and 5th overall.</dd>
-                    <dt>ISC16</dt>
-                    <dd>First appearance in ISC. Ranked 3rd in HPL benchmarking.</dd>
-                    <dt>ASC16</dt>
-                    <dd>Won <strong>Application Innovation Award</strong> (HPCG) and Fan Favorite Team (Twitter).</dd>
-                    <dt>ASC15</dt>
-                    <dd>Won <strong>Highest LINPACK Award</strong> (11.92 TFLOPS/s) breaking the world record.</dd>
-                    <dt>ASC14</dt>
-                    <dd>First appearance in ASC. Won <strong>Silver Prize</strong> (ranked 2nd overall).</dd>
-                </dl>
-            </div>
+          <div class="col-lg-8 mx-auto">
+            <h2 class="text-center">History</h2>
+            <dl class="row">
+                <dt class="col-lg-1">SC17</dt>
+                <dd class="col-lg-11">Won both <strong>Highest LINPACK Award</strong> (breaking the world record with 51.77 TFLOPS/s, see <a href="https://top500.org/scc/">TOP500 SCC List</a>) and <strong>Overall Championship</strong>.</dd>
+                <dt class="col-lg-1">ISC17</dt>
+                <dd class="col-lg-11">Won <strong>Deep Learning Excellence Award</strong> and ranked 4th overall.</dd>
+                <dt class="col-lg-1">SC16</dt>
+                <dd class="col-lg-11">First appearance in SC. Ranked <strong>1st in secret application</strong> (GROMACS) and 5th overall.</dd>
+                <dt class="col-lg-1">ISC16</dt>
+                <dd class="col-lg-11">First appearance in ISC. Ranked 3rd in HPL benchmarking.</dd>
+                <dt class="col-lg-1">ASC16</dt>
+                <dd class="col-lg-11">Won <strong>Application Innovation Award</strong> (HPCG) and Fan Favorite Team (Twitter).</dd>
+                <dt class="col-lg-1">ASC15</dt>
+                <dd class="col-lg-11">Won <strong>Highest LINPACK Award</strong> (11.92 TFLOPS/s) breaking the world record.</dd>
+                <dt class="col-lg-1">ASC14</dt>
+                <dd class="col-lg-11">First appearance in ASC. Won <strong>Silver Prize</strong> (ranked 2nd overall).</dd>
+            </dl>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="container content-section text-center">
+    <section id="contact" class="content-section text-center">
+      <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Contact NTU HPC</h2>
-                <p>Drop us an email if you want to know more about the team. Also check out our Twitter and GitHub.</p>
-                <p><a href="mailto:info@ntuhpc.org">info@ntuhpc.org</a>
-                </p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://twitter.com/realntuhpc" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                    </li> 
-                    <li>
-                        <a href="https://github.com/ntuhpc" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                    </li>
-                </ul>
-            </div>
+          <div class="col-lg-8 mx-auto">
+            <h2>Contact NTU HPC</h2>
+            <p>Drop us an email if you want to know more about the team. Also check out our Twitter and GitHub.</p>
+            <p><a href="mailto:info@ntuhpc.org">info@ntuhpc.org</a>
+            </p>
+            <ul class="list-inline banner-social-buttons">
+                <li class="list-inline-item">
+                    <a href="https://twitter.com/realntuhpc" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                </li> 
+                <li class="list-inline-item">
+                    <a href="https://github.com/ntuhpc" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Internal Section -->
-    <section id="internal" class="container content-section text-center">
+    <section id="internal" class="content-section text-center">
+      <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
-                <h2>Internal portals</h2>
-                <p>Members can access the following internal services from here.</p>
-                <ul class="list-inline banner-social-buttons">
-                    <li>
-                        <a href="https://wiki.ntuhpc.org" class="btn btn-default btn-lg"><i class="fa fa-wikipedia-w fa-fw"></i> <span class="network-name">Wiki</span></a>
-                    </li>
-                    <li>
-                        <a href="https://grafana.ntuhpc.org" class="btn btn-default btn-lg"><i class="fa fa-bar-chart fa-fw"></i> <span class="network-name">Grafana</span></a>
-                    </li>
-                    <li>
-                        <a href="https://ntuhpc.slack.com" class="btn btn-default btn-lg"><i class="fa fa-slack fa-fw"></i> <span class="network-name">Slack</span></a>
-                    </li>
-                </ul>
-            </div>
+          <div class="col-lg-8 mx-auto">
+            <h2>Internal portals</h2>
+            <p>Members can access the following internal services from here.</p>
+            <ul class="list-inline banner-social-buttons">
+                <li class="list-inline-item">
+                    <a href="https://wiki.ntuhpc.org" class="btn btn-default btn-lg"><i class="fa fa-wikipedia-w fa-fw"></i> <span class="network-name">Wiki</span></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://grafana.ntuhpc.org" class="btn btn-default btn-lg"><i class="fa fa-bar-chart fa-fw"></i> <span class="network-name">Grafana</span></a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://ntuhpc.slack.com" class="btn btn-default btn-lg"><i class="fa fa-slack fa-fw"></i> <span class="network-name">Slack</span></a>
+                </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </section>
 
     <!-- Map Section -->
@@ -184,39 +175,24 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; 2016 - 2017 ntuhpc.org All Rights Reserved</p>
-        </div>
+      <div class="container text-center">
+        <p>Copyright &copy; 2016 - 2018 ntuhpc.org All Rights Reserved</p>
+      </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="vendor/jquery/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script>
-        var map;
-        function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 1.348312, lng: 103.6833486 },
-                zoom: 17,
-                disableDefaultUI: true,
-                draggable: false,
-                scrollwheel: false
-            });
-        }
-    </script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap"
-        async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&sensor=false"></script>
 
-    <!-- Theme JavaScript -->
+    <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>
 
-</body>
+  </body>
 
 </html>
