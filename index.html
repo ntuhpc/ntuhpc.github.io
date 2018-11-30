@@ -230,7 +230,20 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&sensor=false"></script>
+    <script>
+    	var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 1.348312, lng: 103.6833486 },
+                zoom: 17,
+                disableDefaultUI: true,
+                draggable: false,
+                scrollwheel: false
+            });
+        }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv2JMGcV8cyIX4h96MLBZqCk7Q-9DA65Q&callback=initMap"
+        async defer></script>
 
     <!-- Custom scripts for this template -->
     <script src="js/grayscale.min.js"></script>
