@@ -1,5 +1,5 @@
 body {
-  font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Lora", "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: relative;
   width: 100%;
   height: 100%;
@@ -18,7 +18,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Cabin", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   margin: 0 0 35px;
   letter-spacing: 1px;
@@ -30,7 +30,6 @@ p {
   line-height: 1.5;
   margin: 0 0 25px;
 }
-
 @media (min-width: 768px) {
   p {
     font-size: 18px;
@@ -45,52 +44,44 @@ a {
   transition: all 0.2s ease-in-out;
   color: #42DCA3;
 }
-
 a:focus, a:hover {
   text-decoration: none;
   color: #1d9b6c;
 }
 
 #mainNav {
-  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Cabin", "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin-bottom: 0;
   text-transform: uppercase;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   background-color: black;
 }
-
 #mainNav .navbar-toggler {
   font-size: 14px;
   padding: 11px;
   color: white;
   border: 1px solid white;
 }
-
 #mainNav .navbar-brand {
   font-weight: 700;
 }
-
 #mainNav a {
   color: white;
 }
-
 #mainNav .navbar-nav .nav-item {
   -webkit-transition: background 0.3s ease-in-out;
   -moz-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
-
 #mainNav .navbar-nav .nav-item:hover {
   color: fade(white, 80%);
   outline: none;
   background-color: transparent;
 }
-
 #mainNav .navbar-nav .nav-item:active, #mainNav .navbar-nav .nav-item:focus {
   outline: none;
   background-color: transparent;
 }
-
 @media (min-width: 992px) {
   #mainNav {
     padding-top: 20px;
@@ -131,20 +122,17 @@ a:focus, a:hover {
   -o-background-size: cover;
   background-size: cover;
 }
-
 .masthead .intro-body {
   display: table-cell;
   vertical-align: middle;
 }
-
 .masthead .intro-body .brand-heading {
   font-size: 50px;
 }
-
 .masthead .intro-body .intro-text {
   font-size: 18px;
+  font-family: "Inconsolata", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-
 @media (min-width: 768px) {
   .masthead {
     height: 100%;
@@ -172,7 +160,6 @@ a:focus, a:hover {
   border-radius: 100% !important;
   background: transparent;
 }
-
 .btn-circle:focus, .btn-circle:hover {
   color: white;
   outline: none;
@@ -204,13 +191,13 @@ a:focus, a:hover {
     padding-top: 200px;
     padding-bottom: 200px;
   }
+
   #map {
     height: 350px;
   }
 }
-
 .btn {
-  font-family: 'Cabin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: "Cabin", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -224,7 +211,6 @@ a:focus, a:hover {
   border: 1px solid #42DCA3;
   background-color: transparent;
 }
-
 .btn-default:focus, .btn-default:hover {
   color: black;
   border: 1px solid #42DCA3;
@@ -235,13 +221,11 @@ a:focus, a:hover {
 ul.banner-social-buttons {
   margin-top: 0;
 }
-
 @media (max-width: 1199px) {
   ul.banner-social-buttons {
     margin-top: 15px;
   }
 }
-
 @media (max-width: 767px) {
   ul.banner-social-buttons li {
     display: block;
@@ -256,7 +240,6 @@ ul.banner-social-buttons {
 footer {
   padding: 50px 0;
 }
-
 footer p {
   font-size: 14px;
   margin: 0;
