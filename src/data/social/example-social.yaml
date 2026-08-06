@@ -1,6 +1,7 @@
 # Options: Instagram, LinkedIn, X, YouTube, Facebook, Other
 platform: Other
 author: NTU HPC/AI
+# Date format: YYYY-MM-DD (for example, 2026-08-06)
 publishedDate: 2099-01-01
 text: This is a draft example showing the fields needed for a social highlight.
 externalUrl: https://example.com
