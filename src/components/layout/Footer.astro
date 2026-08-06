@@ -1,18 +1,41 @@
 ---
-const year = new Date().getFullYear();
+const sponsorModules = import.meta.glob('../../../assets/sponsors/*.{png,jpg,jpeg,webp,avif,svg}', {
+  eager: true,
+  query: '?url',
+  import: 'default',
+});
+
+const isNtuLogo = (path: string) => /^ntu[_-]?logo\./i.test(path.split('/').pop() ?? '');
+
+const sponsorLogos = Object.entries(sponsorModules)
+  .sort(([firstPath], [secondPath]) => Number(isNtuLogo(secondPath)) - Number(isNtuLogo(firstPath)))
+  .map(([path, src]) => {
+    const filename = path.split('/').pop()?.replace(/\.[^.]+$/, '') ?? 'Sponsor logo';
+
+    return {
+      src: src as string,
+      alt: filename.replace(/[_-]+/g, ' '),
+    };
+  });
 ---
 
-<footer class="border-t border-brand-border-dark bg-brand-navy text-brand-text-on-dark">
-  <div class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-slate-300 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-    <div>
-      <p class="font-semibold text-brand-text-on-dark">NTU HPC/AI</p>
-      <p class="mt-1">High Performance Computing and AI at Nanyang Technological University.</p>
+<footer class="border-t-4 border-brand-navy bg-brand-page text-brand-text">
+  <div class="mx-auto flex max-w-7xl flex-col gap-8 px-6 py-8 lg:flex-row lg:items-center lg:px-8">
+    <p class="max-w-40 text-sm font-semibold uppercase leading-6 text-brand-rose">
+      Our Partners &amp; Sponsors
+    </p>
+
+    <div class="flex flex-1 flex-wrap items-center justify-start gap-x-10 gap-y-6 lg:justify-center" aria-label="Partners and sponsors">
+      {sponsorLogos.map((logo) => (
+        <img src={logo.src} alt={logo.alt} class="h-10 w-auto max-w-40 object-contain" loading="lazy" />
+      ))}
     </div>
-    <div class="flex flex-wrap gap-x-5 gap-y-2">
-      <a class="transition-colors hover:text-brand-coral" href="/contact/">Contact</a>
-      <a class="transition-colors hover:text-brand-coral" href="https://github.com/ntuhpc">GitHub</a>
-      <a class="transition-colors hover:text-brand-coral" href="https://www.linkedin.com/company/ntu-hpc/">LinkedIn</a>
-    </div>
-    <p>&copy; {year} NTU HPC/AI. All rights reserved.</p>
+
+    <a
+      href="/contact/"
+      class="inline-flex shrink-0 items-center justify-center rounded-md border border-brand-rose px-5 py-3 text-sm font-semibold text-brand-rose transition-colors hover:bg-brand-rose hover:text-brand-surface"
+    >
+      Become a Partner <span class="ml-3" aria-hidden="true">→</span>
+    </a>
   </div>
 </footer>
