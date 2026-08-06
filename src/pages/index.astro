@@ -1,15 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/sections/Hero.astro';
 ---
 
-<Layout>
-  <section class="mx-auto max-w-7xl px-6 pt-24 pb-0 lg:px-8">
-    <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-rose">NTU HPC/AI</p>
-    <h1 class="mt-4 max-w-3xl text-5xl font-bold tracking-tight text-brand-navy lg:text-7xl">
-      The new website foundation is ready.
-    </h1>
-    <p class="mt-6 max-w-2xl text-lg leading-8 text-brand-muted">
-      Shared layout, navigation, footer, metadata, and Tailwind design tokens are now in place.
-    </p>
-  </section>
+<Layout
+  title="NTU HPC/AI | High Performance Computing and Artificial Intelligence"
+  description="NTU HPC/AI is a student-run club exploring high performance computing, artificial intelligence, and performance engineering."
+>
+  <Hero />
 </Layout>
