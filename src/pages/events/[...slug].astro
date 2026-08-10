@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-SG', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+
+const statusStyles = {
+  Upcoming: 'bg-brand-rose-soft text-brand-rose',
+  Ongoing: 'bg-emerald-100 text-emerald-700',
+  Completed: 'bg-brand-page text-brand-muted',
+  Cancelled: 'bg-red-100 text-red-700',
+};
+
+export async function getStaticPaths() {
+  const events = (await getCollection('events')).filter((event) => !event.data.draft);
+
+  return events.map((event) => ({
+    params: { slug: event.id },
+    props: { event },
+  }));
+}
+
+const { event } = Astro.props;
+const eventDate = event.data.endDate && event.data.endDate.getTime() !== event.data.startDate.getTime()
+  ? `${formatDate(event.data.startDate)} - ${formatDate(event.data.endDate)}`
+  : formatDate(event.data.startDate);
+const eventTime = event.data.startTime
+  ? event.data.endTime ? `${event.data.startTime} - ${event.data.endTime}` : event.data.startTime
+  : undefined;
+---
+
+<Layout title={`${event.data.title} | NTU HPC/AI`} description={event.data.description}>
+  <article class="bg-brand-page py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      <a class="inline-flex items-center gap-2 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href="/">
+        <span aria-hidden="true">&larr;</span> Back to home
+      </a>
+
+      <header class="mt-8 border-b border-brand-border pb-8">
+        <div class="flex flex-wrap items-center gap-3">
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">{event.data.type}</p>
+          <span class:list={['rounded-full px-2.5 py-1 text-xs font-bold', statusStyles[event.data.status]]}>{event.data.status}</span>
+        </div>
+        <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">{event.data.title}</h1>
+        <p class="mt-5 text-lg leading-8 text-brand-muted">{event.data.description.split('\n')[0]}</p>
+      </header>
+
+      <section class="mt-8 rounded-2xl bg-brand-surface p-6 shadow-sm" aria-label="Event details">
+        <dl class="grid gap-6 sm:grid-cols-2">
+          <div>
+            <dt class="text-xs font-bold uppercase tracking-[0.12em] text-brand-muted">Date</dt>
+            <dd class="mt-2 font-semibold text-brand-navy">{eventDate}</dd>
+          </div>
+          {eventTime && (
+            <div>
+              <dt class="text-xs font-bold uppercase tracking-[0.12em] text-brand-muted">Time</dt>
+              <dd class="mt-2 font-semibold text-brand-navy">{eventTime}</dd>
+            </div>
+          )}
+          <div>
+            <dt class="text-xs font-bold uppercase tracking-[0.12em] text-brand-muted">Location</dt>
+            <dd class="mt-2 font-semibold text-brand-navy">{event.data.location}</dd>
+          </div>
+        </dl>
+
+        {(event.data.registrationUrl || event.data.onlineUrl) && (
+          <div class="mt-7 flex flex-wrap gap-3 border-t border-brand-border pt-6">
+            {event.data.registrationUrl && (
+              <a class="inline-flex items-center justify-center rounded-lg bg-brand-rose px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-coral" href={event.data.registrationUrl} target="_blank" rel="noreferrer">
+                Register now <span class="ml-2" aria-hidden="true">&rarr;</span>
+              </a>
+            )}
+            {event.data.onlineUrl && (
+              <a class="inline-flex items-center justify-center rounded-lg border border-brand-border px-5 py-3 text-sm font-bold text-brand-navy transition hover:border-brand-rose hover:text-brand-rose" href={event.data.onlineUrl} target="_blank" rel="noreferrer">
+                Join online <span class="ml-2" aria-hidden="true">&rarr;</span>
+              </a>
+            )}
+          </div>
+        )}
+      </section>
+
+      <section class="mt-10" aria-labelledby="about-event-heading">
+        <h2 id="about-event-heading" class="text-2xl font-bold tracking-tight text-brand-navy">About this event</h2>
+        <div class="mt-5 whitespace-pre-line text-base leading-8 text-brand-text">{event.data.description}</div>
+      </section>
+    </div>
+  </article>
+</Layout>

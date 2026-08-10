@@ -1,0 +1,44 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-SG', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+
+export async function getStaticPaths() {
+  const blogPosts = (await getCollection('blog')).filter((post) => !post.data.draft);
+
+  return blogPosts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={`${post.data.title} | NTU HPC/AI`} description={post.data.description}>
+  <article class="bg-brand-page py-16 sm:py-20">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      <a class="inline-flex items-center gap-2 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href="/">
+        <span aria-hidden="true">&larr;</span> Back to home
+      </a>
+
+      <header class="mt-8 border-b border-brand-border pb-8">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Blog</p>
+        <h1 class="mt-3 text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">{post.data.title}</h1>
+        <p class="mt-5 text-lg leading-8 text-brand-muted">{post.data.description}</p>
+        <time class="mt-5 block text-sm font-medium text-brand-muted" datetime={post.data.publishedDate.toISOString()}>{formatDate(post.data.publishedDate)}</time>
+      </header>
+
+      <div class="pt-10 text-base leading-8 text-brand-text [&_h1]:mb-6 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-tight [&_h1]:tracking-tight [&_h1]:text-brand-navy [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-brand-navy [&_img]:my-8 [&_img]:w-full [&_img]:rounded-2xl [&_img]:border [&_img]:border-brand-border [&_img]:shadow-sm [&_p]:mt-5 [&_strong]:font-bold [&_a]:font-semibold [&_a]:text-brand-rose [&_a]:underline [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
