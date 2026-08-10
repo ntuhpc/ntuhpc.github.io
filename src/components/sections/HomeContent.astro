@@ -56,8 +56,11 @@ const socialPosts = (await getCollection('social'))
                 </div>
                 <h4 class="mt-2 text-base font-bold leading-6 text-brand-navy">{event.data.title}</h4>
                 <p class="mt-1 text-sm text-brand-muted">{event.data.startTime ? `${event.data.startTime} · ` : ''}{event.data.location}</p>
+                <a class="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href={`/events/${event.id}/`}>
+                  View event <span aria-hidden="true">&rarr;</span>
+                </a>
                 {event.data.registrationUrl && (
-                  <a class="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href={event.data.registrationUrl} target="_blank" rel="noreferrer">
+                  <a class="ml-4 inline-flex items-center gap-1.5 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href={event.data.registrationUrl} target="_blank" rel="noreferrer">
                     Register <span aria-hidden="true">&rarr;</span>
                   </a>
                 )}
