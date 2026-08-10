@@ -1,5 +1,6 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntries, render } from 'astro:content';
+import ArticleAuthors from '../../components/content/ArticleAuthors.astro';
 import Layout from '../../layouts/Layout.astro';
 
 const formatDate = (date: Date) =>
@@ -20,6 +21,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const authors = (await getEntries(post.data.authors)).filter((author) => !author.data.draft);
 ---
 
 <Layout title={`${post.data.title} | NTU HPC/AI`} description={post.data.description}>
@@ -39,6 +41,7 @@ const { Content } = await render(post);
       <div class="pt-10 text-base leading-8 text-brand-text [&_h1]:mb-6 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-tight [&_h1]:tracking-tight [&_h1]:text-brand-navy [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-brand-navy [&_img]:my-8 [&_img]:w-full [&_img]:rounded-2xl [&_img]:border [&_img]:border-brand-border [&_img]:shadow-sm [&_p]:mt-5 [&_strong]:font-bold [&_a]:font-semibold [&_a]:text-brand-rose [&_a]:underline [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
         <Content />
       </div>
+      <ArticleAuthors authors={authors} />
     </div>
   </article>
 </Layout>
