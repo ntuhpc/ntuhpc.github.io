@@ -69,7 +69,9 @@ const team = defineCollection({
     achievements: z.array(z.string()).default([]),
     linkedin: z.string().url().optional(),
     email: z.string().email().optional(),
-    order: z.number().int().default(0),
+    order: z.number().int().optional(),
+    memberSince: z.coerce.number().int().min(1900).max(2100),
+    graduationYear: z.coerce.number().int().min(1900).max(2100).optional(),
     draft: z.boolean().default(false),
   }),
 });
