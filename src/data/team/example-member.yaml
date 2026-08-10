@@ -1,0 +1,17 @@
+# Required: member's display name
+name: Example member — replace before publishing
+# Options: active, inactive, alumni
+status: active
+# Optional: role, photo, about, course, year, achievements, LinkedIn, email, and display order
+role: Optional role
+# Store profile images in assets/member-images/. Use the image filename here.
+# Omit this field to use default-avatar.png automatically.
+about: Replace this draft example with an approved member profile.
+course: Example course
+year: Year 1
+achievements: []
+linkedin: https://www.linkedin.com/in/example
+email: example@ntu.edu.sg
+order: 99
+# Change this to false after you are done
+draft: true

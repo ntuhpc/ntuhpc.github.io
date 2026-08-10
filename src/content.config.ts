@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -30,7 +30,7 @@ const news = defineCollection({
     description: z.string(),
     publishedDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    authors: z.array(z.string()).default([]),
+    authors: z.array(reference('team')).default([]),
     type: z.enum(['News', 'Announcement', 'Event Recap', 'Research Highlight']),
     category: z.string().optional(),
     tags: z.array(z.string()).default([]),
@@ -47,11 +47,29 @@ const blog = defineCollection({
     description: z.string(),
     publishedDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    authors: z.array(z.string()).default([]),
+    authors: z.array(reference('team')).default([]),
     category: z.string().optional(),
     tags: z.array(z.string()).default([]),
     coverImage: z.string().optional(),
     featured: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
+});
+
+const team = defineCollection({
+  loader: glob({ pattern: '**/*.{yaml,yml}', base: './src/data/team' }),
+  schema: z.object({
+    name: z.string(),
+    status: z.enum(['active', 'inactive', 'alumni']),
+    role: z.string().optional(),
+    photo: z.string().default('default-avatar.png'),
+    about: z.string().optional(),
+    course: z.string().optional(),
+    year: z.string().optional(),
+    achievements: z.array(z.string()).default([]),
+    linkedin: z.string().url().optional(),
+    email: z.string().email().optional(),
+    order: z.number().int().default(0),
     draft: z.boolean().default(false),
   }),
 });
@@ -72,4 +90,4 @@ const social = defineCollection({
   }),
 });
 
-export const collections = { events, news, blog, social };
+export const collections = { events, news, blog, social, team };
