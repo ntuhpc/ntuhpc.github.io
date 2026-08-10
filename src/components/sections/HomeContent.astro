@@ -1,0 +1,199 @@
+---
+import { getCollection } from 'astro:content';
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat('en-SG', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  }).format(date);
+
+const featured = <T extends { data: { featured: boolean; draft: boolean } }>(entry: T) =>
+  entry.data.featured && !entry.data.draft;
+
+const events = (await getCollection('events'))
+  .filter((event) => featured(event) && ['Upcoming', 'Ongoing'].includes(event.data.status))
+  .sort((first, second) => first.data.startDate.getTime() - second.data.startDate.getTime())
+  .slice(0, 3);
+
+const articles = [...(await getCollection('news')), ...(await getCollection('blog'))]
+  .filter(featured)
+  .sort((first, second) => second.data.publishedDate.getTime() - first.data.publishedDate.getTime())
+  .slice(0, 3);
+
+const socialPosts = (await getCollection('social'))
+  .filter(featured)
+  .sort((first, second) => second.data.publishedDate.getTime() - first.data.publishedDate.getTime())
+  .slice(0, 3);
+---
+
+<section class="bg-brand-page py-16 sm:py-20" aria-label="Featured club updates">
+  <div class="mx-auto grid max-w-7xl gap-6 px-6 xl:items-start xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] xl:px-8">
+    <section class="rounded-2xl border border-brand-border bg-brand-surface p-6 shadow-sm sm:p-7" aria-labelledby="updates-heading">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">From NTU HPC/AI</p>
+          <h2 id="updates-heading" class="mt-1 text-2xl font-bold tracking-tight text-brand-navy">Latest Updates</h2>
+        </div>
+        <span class="flex h-10 w-10 items-center justify-center rounded-full bg-brand-rose-soft text-brand-rose" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-5 w-5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg>
+        </span>
+      </div>
+
+      <section class="mt-8" aria-labelledby="events-heading">
+        <div class="flex items-center justify-between gap-4">
+          <h3 id="events-heading" class="text-lg font-bold text-brand-navy">Upcoming Events</h3>
+          <a class="text-sm font-bold text-brand-rose transition hover:text-brand-navy" href="/events/">All events &rarr;</a>
+        </div>
+
+        {events.length > 0 ? (
+          <div class="mt-4 space-y-3">
+            {events.map((event) => (
+              <article class="rounded-xl bg-brand-page px-4 py-4">
+                <div class="flex items-start justify-between gap-3">
+                  <p class="text-sm font-semibold text-brand-rose">{formatDate(event.data.startDate)}</p>
+                  <span class="rounded-full bg-brand-surface px-2.5 py-1 text-xs font-semibold text-brand-muted">{event.data.status}</span>
+                </div>
+                <h4 class="mt-2 text-base font-bold leading-6 text-brand-navy">{event.data.title}</h4>
+                <p class="mt-1 text-sm text-brand-muted">{event.data.startTime ? `${event.data.startTime} · ` : ''}{event.data.location}</p>
+                {event.data.registrationUrl && (
+                  <a class="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href={event.data.registrationUrl} target="_blank" rel="noreferrer">
+                    Register <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="mt-4 rounded-xl bg-brand-page px-4 py-6 text-center text-sm leading-6 text-brand-muted">Featured upcoming and ongoing events will appear here.</p>
+        )}
+      </section>
+
+      <section class="mt-8 border-t border-brand-border pt-8" aria-labelledby="articles-heading">
+        <div class="flex items-center justify-between gap-4">
+          <h3 id="articles-heading" class="text-lg font-bold text-brand-navy">News &amp; Blogs</h3>
+          <a class="text-sm font-bold text-brand-rose transition hover:text-brand-navy" href="/news/">All news &amp; blogs &rarr;</a>
+        </div>
+
+        {articles.length > 0 ? (
+          <div class="mt-4 space-y-3">
+            {articles.map((article) => (
+              <article class="rounded-xl bg-brand-page px-4 py-4">
+                <p class="text-xs font-bold uppercase tracking-[0.12em] text-brand-rose">{article.collection === 'news' ? article.data.type : 'Blog'} · {formatDate(article.data.publishedDate)}</p>
+                <h4 class="mt-2 text-base font-bold leading-6 text-brand-navy">{article.data.title}</h4>
+                <p class="mt-2 line-clamp-2 text-sm leading-5 text-brand-muted">{article.data.description}</p>
+                <a class="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-brand-rose transition hover:text-brand-navy" href={article.collection === 'news' ? `/news/${article.id}/` : `/blog/${article.id}/`}>
+                  Read more <span aria-hidden="true">&rarr;</span>
+                </a>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p class="mt-4 rounded-xl bg-brand-page px-4 py-6 text-center text-sm leading-6 text-brand-muted">Featured news and blog posts will appear here.</p>
+        )}
+      </section>
+    </section>
+
+    <section class="flex min-h-[29rem] flex-col rounded-2xl border border-brand-border bg-brand-surface p-6 shadow-sm sm:p-7" aria-labelledby="social-heading">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Stay connected</p>
+          <h2 id="social-heading" class="mt-1 text-2xl font-bold tracking-tight text-brand-navy">Social</h2>
+        </div>
+        {socialPosts.length > 1 && (
+          <div class="flex gap-2" aria-label="Social post controls">
+            <button class="social-scroll rounded-full border border-brand-border p-2 text-brand-navy transition hover:border-brand-rose hover:text-brand-rose" type="button" data-social-scroll="previous" aria-label="Previous social post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button class="social-scroll rounded-full border border-brand-border p-2 text-brand-navy transition hover:border-brand-rose hover:text-brand-rose" type="button" data-social-scroll="next" aria-label="Next social post">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="h-4 w-4"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        )}
+      </div>
+
+      {socialPosts.length > 0 ? (
+        <div class="mt-6 flex flex-1">
+          <div class="relative -mx-1 flex w-full snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-social-carousel tabindex="0" aria-label="Featured social posts">
+            {socialPosts.map((post) => (
+              <article class="flex w-full shrink-0 snap-start flex-col rounded-xl bg-brand-page p-5">
+                <div class="flex items-center justify-between gap-3">
+                  <span class="text-sm font-bold text-brand-rose">{post.data.platform}</span>
+                  <time class="text-xs font-medium text-brand-muted" datetime={post.data.publishedDate.toISOString()}>{formatDate(post.data.publishedDate)}</time>
+                </div>
+                {post.data.embedUrl ? (
+                  <iframe
+                    class="mt-5 w-full rounded-lg border-0 bg-brand-surface"
+                    src={post.data.embedUrl}
+                    height={post.data.embedHeight ?? 627}
+                    title={`Embedded ${post.data.platform} post`}
+                    loading="lazy"
+                    allowfullscreen
+                  ></iframe>
+                ) : (
+                  <p class="mt-5 text-base leading-7 text-brand-text">{post.data.text}</p>
+                )}
+                <div class="mt-auto pt-6">
+                  {post.data.handle && <p class="text-sm font-semibold text-brand-navy">{post.data.handle}</p>}
+                  <a class="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-navy transition hover:text-brand-rose" href={post.data.externalUrl} target="_blank" rel="noreferrer">View post <span aria-hidden="true">&rarr;</span></a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div class="flex flex-1 items-center justify-center py-10 text-center">
+          <p class="max-w-56 text-sm leading-6 text-brand-muted">Featured social highlights will appear here.</p>
+        </div>
+      )}
+    </section>
+  </div>
+</section>
+
+<script>
+  const carousel = document.querySelector<HTMLElement>('[data-social-carousel]');
+  const socialPosts = carousel?.querySelectorAll<HTMLElement>(':scope > article') ?? [];
+  let carouselTimer: ReturnType<typeof window.setInterval> | undefined;
+
+  const moveCarousel = (direction: 1 | -1) => {
+    if (!carousel || socialPosts.length < 2) return;
+
+    const currentIndex = Array.from(socialPosts).reduce((closestIndex, post, index) => {
+      const closestPost = socialPosts[closestIndex];
+      return Math.abs(post.offsetLeft - carousel.scrollLeft) < Math.abs(closestPost.offsetLeft - carousel.scrollLeft)
+        ? index
+        : closestIndex;
+    }, 0);
+    const nextIndex = (currentIndex + direction + socialPosts.length) % socialPosts.length;
+    carousel.scrollTo({ left: socialPosts[nextIndex].offsetLeft, behavior: 'smooth' });
+  };
+
+  const stopAutoplay = () => {
+    if (carouselTimer) window.clearInterval(carouselTimer);
+    carouselTimer = undefined;
+  };
+
+  const startAutoplay = () => {
+    if (!carousel || socialPosts.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    stopAutoplay();
+    carouselTimer = window.setInterval(() => moveCarousel(1), 10_000);
+  };
+
+  document.querySelectorAll<HTMLButtonElement>('[data-social-scroll]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const direction = button.dataset.socialScroll === 'next' ? 1 : -1;
+      moveCarousel(direction);
+    });
+  });
+
+  carousel?.addEventListener('pointerenter', stopAutoplay);
+  carousel?.addEventListener('pointerleave', startAutoplay);
+  carousel?.addEventListener('focusin', stopAutoplay);
+  carousel?.addEventListener('focusout', () => {
+    window.setTimeout(() => {
+      if (!carousel?.matches(':focus-within')) startAutoplay();
+    });
+  });
+
+  startAutoplay();
+</script>
