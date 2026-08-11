@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import defaultAvatar from '../../../assets/member-images/default-avatar.png';
+
+interface Props {
+  authors: CollectionEntry<'team'>[];
+}
+
+const { authors } = Astro.props;
+const avatarModules = import.meta.glob('../../../assets/member-images/*.{avif,jpeg,jpg,png,webp}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, { src: string }>;
+
+const getAvatar = (filename: string) =>
+  avatarModules[`../../../assets/member-images/${filename}`] ?? defaultAvatar;
+---
+
+{authors.length > 0 && (
+  <section class="mt-12 border-t border-brand-border pt-8" aria-label="Article authors">
+    <p class="text-xs font-bold uppercase tracking-[0.16em] text-brand-muted">Written by</p>
+    <div class="mt-4 space-y-3">
+      {authors.map((author) => {
+        const avatar = getAvatar(author.data.photo);
+        const profileUrl = `/team/?member=${author.id}#current-members`;
+
+        return (
+          <a
+            class="group flex items-center gap-4 rounded-2xl border border-brand-border bg-brand-surface p-4 shadow-sm transition hover:border-brand-rose hover:bg-brand-rose-soft focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2"
+            href={profileUrl}
+          >
+            <img
+              class="h-14 w-14 shrink-0 rounded-full border-2 border-brand-rose object-cover"
+              src={avatar.src}
+              alt={`${author.data.name}'s profile photo`}
+              width="56"
+              height="56"
+            />
+            <span class="min-w-0">
+              <span class="block font-bold text-brand-navy group-hover:text-brand-rose">{author.data.name}</span>
+              {author.data.role && <span class="mt-0.5 block text-sm text-brand-muted">{author.data.role}</span>}
+            </span>
+            <span class="ml-auto shrink-0 text-sm font-bold text-brand-rose">View profile <span aria-hidden="true">&rarr;</span></span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+)}
