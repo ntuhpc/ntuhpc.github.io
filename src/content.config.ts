@@ -66,7 +66,7 @@ const team = defineCollection({
     about: z.string().optional(),
     course: z.string().optional(),
     year: z.string().optional(),
-    achievements: z.array(z.string()).default([]),
+    competitionExperience: z.array(z.string()).default([]),
     linkedin: z.string().url().optional(),
     email: z.string().email().optional(),
     order: z.number().int().optional(),
