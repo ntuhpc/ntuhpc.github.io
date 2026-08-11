@@ -95,9 +95,11 @@ const social = defineCollection({
 const achievements = defineCollection({
   loader: glob({ pattern: '**/*.{yaml,yml}', base: './src/data/achievements' }),
   schema: z.object({
-    title: z.string(),
-    date: z.coerce.date(),
-    competition: z.string(),
+      title: z.string(),
+      date: z.coerce.date(),
+      // Set when the source confirms a year but not an exact event date.
+      yearOnly: z.boolean().default(false),
+      competition: z.string(),
     results: z.array(z.object({
       placement: z.enum(['first', 'second', 'third', 'special']),
       label: z.string(),
