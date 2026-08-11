@@ -38,7 +38,7 @@ const authors = (await getEntries(post.data.authors)).filter((author) => !author
         <time class="mt-5 block text-sm font-medium text-brand-muted" datetime={post.data.publishedDate.toISOString()}>{formatDate(post.data.publishedDate)}</time>
       </header>
 
-      <div class="pt-10 text-base leading-8 text-brand-text [&_h1]:mb-6 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-tight [&_h1]:tracking-tight [&_h1]:text-brand-navy [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-brand-navy [&_img]:my-8 [&_img]:w-full [&_img]:rounded-2xl [&_img]:border [&_img]:border-brand-border [&_img]:shadow-sm [&_p]:mt-5 [&_strong]:font-bold [&_a]:font-semibold [&_a]:text-brand-rose [&_a]:underline [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
+      <div class="pt-10 text-base leading-8 text-brand-text [&_h1]:mb-6 [&_h1]:text-3xl [&_h1]:font-bold [&_h1]:leading-tight [&_h1]:tracking-tight [&_h1]:text-brand-navy [&_h2]:mb-4 [&_h2]:mt-10 [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-brand-navy [&_h3]:mb-3 [&_h3]:mt-8 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:leading-tight [&_h3]:text-brand-navy [&_img]:my-8 [&_img]:w-full [&_img]:rounded-2xl [&_img]:border [&_img]:border-brand-border [&_img]:shadow-sm [&_p]:mt-5 [&_strong]:font-bold [&_a]:font-semibold [&_a]:text-brand-rose [&_a]:underline [&_ul]:mt-5 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:pl-6">
         <Content />
       </div>
       <ArticleAuthors authors={authors} />
