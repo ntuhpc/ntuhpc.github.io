@@ -1,0 +1,266 @@
+---
+import { getCollection } from 'astro:content';
+import defaultAvatar from '../../../assets/member-images/default-avatar.png';
+import Layout from '../../layouts/Layout.astro';
+
+const avatarModules = import.meta.glob('../../../assets/member-images/*.{avif,jpeg,jpg,png,webp}', {
+  eager: true,
+  import: 'default',
+}) as Record<string, { src: string }>;
+
+const getAvatar = (filename: string) =>
+  avatarModules[`../../../assets/member-images/${filename}`] ?? defaultAvatar;
+
+const chunk = <T,>(items: T[], size: number) =>
+  Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size));
+
+const members = (await getCollection('team'))
+  .filter((member) => !member.data.draft && member.data.status !== 'inactive')
+  .sort((first, second) => {
+    const firstOrder = first.data.order ?? Number.POSITIVE_INFINITY;
+    const secondOrder = second.data.order ?? Number.POSITIVE_INFINITY;
+
+    if (firstOrder !== secondOrder) return firstOrder - secondOrder;
+    if (first.data.competitionExperience.length !== second.data.competitionExperience.length) {
+      return second.data.competitionExperience.length - first.data.competitionExperience.length;
+    }
+    if (first.data.memberSince !== second.data.memberSince) return first.data.memberSince - second.data.memberSince;
+    return first.data.name.localeCompare(second.data.name);
+  });
+
+const activeMembers = members.filter((member) => member.data.status === 'active');
+const alumniMembers = members.filter((member) => member.data.status === 'alumni');
+const activeSlides = chunk(activeMembers, 12);
+const alumniSlides = chunk(alumniMembers, 6);
+const visibleMembers = [...activeMembers, ...alumniMembers];
+---
+
+<Layout title="Our Team | NTU HPC/AI" description="Meet the students and alumni behind NTU HPC/AI.">
+  <section class="relative overflow-hidden bg-brand-navy py-16 text-brand-text-on-dark sm:py-20">
+    <div class="absolute inset-0 opacity-50" aria-hidden="true">
+      <div class="absolute -right-24 -top-32 h-96 w-96 rounded-full border border-brand-rose/30"></div>
+      <div class="absolute right-12 top-14 h-64 w-64 rounded-full border border-brand-text-on-dark/15"></div>
+      <div class="absolute inset-x-0 bottom-0 h-40 bg-[radial-gradient(circle_at_center,rgba(226,85,116,0.28),transparent_62%)]"></div>
+    </div>
+    <svg class="absolute right-4 top-1/2 hidden h-64 w-auto -translate-y-1/2 text-brand-text-on-dark/25 lg:block" viewBox="0 0 420 270" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+      <circle cx="210" cy="70" r="30" />
+      <path d="M145 205v-22c0-36 29-65 65-65s65 29 65 65v22" />
+      <circle cx="110" cy="92" r="24" />
+      <path d="M56 211v-18c0-31 24-55 54-55 14 0 27 5 36 14" />
+      <circle cx="310" cy="92" r="24" />
+      <path d="M364 211v-18c0-31-24-55-54-55-14 0-27 5-36 14" />
+      <path d="M112 235h196" stroke="#E25574" stroke-width="3" />
+      <circle cx="210" cy="235" r="5" fill="#E25574" stroke="none" />
+    </svg>
+    <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <p class="text-sm font-bold uppercase tracking-[0.16em] text-brand-rose">NTU HPC/AI</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-6xl">Our Team</h1>
+      <div class="mt-6 max-w-2xl border-l-4 border-brand-rose pl-5 text-base leading-7 text-brand-text-on-dark/85 sm:text-lg">
+        We are students, problem-solvers, and innovators brought together by a shared interest in HIGH PERFORMANCE COMPUTING and AI. We learn, build, compete, and grow as one community.
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-page py-14 sm:py-18">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <section id="current-members" aria-labelledby="current-members-heading">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Meet the team</p>
+            <h2 id="current-members-heading" class="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy">Current Members</h2>
+          </div>
+          {activeSlides.length > 1 && (
+            <div class="hidden items-center gap-2 sm:flex" aria-label="Current member carousel controls">
+              <button class="member-carousel-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-brand-surface text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-carousel-previous aria-label="Show previous members">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+              </button>
+              <button class="member-carousel-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-brand-surface text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-carousel-next aria-label="Show next members">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>
+              </button>
+            </div>
+          )}
+        </div>
+
+        {activeMembers.length > 0 ? (
+          <div class="relative -mx-1 mt-8 flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth px-1 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-member-carousel data-autoplay="10000" tabindex="0" aria-label="Current members">
+            {activeSlides.map((slide) => (
+              <div class="grid w-full shrink-0 snap-start grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6" data-carousel-slide>
+                {slide.map((member) => {
+                  const avatar = getAvatar(member.data.photo);
+                  return (
+                    <button class="group mx-auto flex w-full max-w-36 flex-col items-center text-center focus:outline-none" type="button" data-member-select={member.id} aria-controls="member-details" aria-expanded="false">
+                      <img class="h-24 w-24 rounded-full border-2 border-brand-border object-cover shadow-sm transition duration-200 group-hover:border-brand-rose group-hover:shadow-md group-focus-visible:border-brand-rose sm:h-28 sm:w-28" src={avatar.src} alt={`Open ${member.data.name}'s profile`} width="112" height="112" />
+                      <span class="mt-3 text-sm font-bold text-brand-navy group-hover:text-brand-rose">{member.data.name}</span>
+                      {member.data.role && <span class="mt-1 text-xs font-semibold text-brand-rose">{member.data.role}</span>}
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="mt-8 rounded-2xl border border-brand-border bg-brand-surface p-6 text-brand-muted">Current member profiles will appear here.</p>
+        )}
+      </section>
+
+      <section id="member-details" class="mt-10 hidden" aria-live="polite">
+        {visibleMembers.map((member) => {
+          const avatar = getAvatar(member.data.photo);
+          return (
+            <article class="hidden rounded-3xl border border-brand-border bg-brand-surface p-6 shadow-sm sm:p-8" data-member-panel={member.id} aria-label={`${member.data.name}'s profile`}>
+              <div class="flex flex-col gap-7 lg:flex-row lg:items-start">
+                <img class="h-32 w-32 shrink-0 rounded-full border-2 border-brand-rose object-cover" src={avatar.src} alt={`${member.data.name}'s profile photo`} width="128" height="128" />
+                <div class="min-w-0 flex-1">
+                  <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">{member.data.status === 'alumni' ? 'Alumni' : 'Current member'}</p>
+                  <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy">{member.data.name}</h2>
+                  {member.data.role && <p class="mt-1 font-semibold text-brand-rose">{member.data.role}</p>}
+                  {member.data.about && <p class="mt-5 max-w-2xl leading-7 text-brand-text">{member.data.about}</p>}
+                  <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-brand-muted">
+                    {member.data.status !== 'alumni' && <span>Member since {member.data.memberSince}</span>}
+                    {member.data.course && <span>{member.data.course}</span>}
+                    {member.data.year && <span>{member.data.year}</span>}
+                    {member.data.graduationYear && <span>Class of {member.data.graduationYear}</span>}
+                  </div>
+                  {(member.data.linkedin || member.data.email) && (
+                    <div class="mt-6 flex flex-wrap gap-3">
+                      {member.data.linkedin && (
+                        <a class="inline-flex items-center gap-2 rounded-lg border border-brand-border px-4 py-2 text-sm font-bold text-brand-navy transition hover:border-brand-rose hover:bg-brand-rose-soft hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" href={member.data.linkedin} target="_blank" rel="noreferrer" aria-label={`${member.data.name}'s LinkedIn profile`}>
+                          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.87 0-2.15 1.45-2.15 2.95v5.67H9.32V8.99h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.3ZM5.3 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.52V8.99h3.56v11.46Z" /></svg>
+                          LinkedIn
+                        </a>
+                      )}
+                      {member.data.email && (
+                        <a class="inline-flex items-center gap-2 rounded-lg border border-brand-border px-4 py-2 text-sm font-bold text-brand-navy transition hover:border-brand-rose hover:bg-brand-rose-soft hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" href={`mailto:${member.data.email}`} aria-label={`Email ${member.data.name}`}>
+                          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m4 7 8 6 8-6" /></svg>
+                          Email
+                        </a>
+                      )}
+                    </div>
+                  )}
+                </div>
+                {member.data.competitionExperience.length > 0 && (
+                  <div class="border-t border-brand-border pt-6 lg:w-72 lg:border-l lg:border-t-0 lg:pl-7 lg:pt-0">
+                    <h3 class="font-bold text-brand-navy">Competition Experience</h3>
+                    <ul class="mt-3 flex flex-wrap gap-2">
+                      {member.data.competitionExperience.map((competition) => <li class="rounded-full bg-brand-rose-soft px-3 py-1 text-xs font-semibold text-brand-navy">{competition}</li>)}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            </article>
+          );
+        })}
+      </section>
+
+      <section class="mt-16 border-t border-brand-border pt-12" aria-labelledby="alumni-heading">
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Our community continues</p>
+            <h2 id="alumni-heading" class="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy">Distinguished Alumni</h2>
+          </div>
+          {alumniSlides.length > 1 && (
+            <div class="hidden items-center gap-2 sm:flex" aria-label="Alumni carousel controls">
+              <button class="member-carousel-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-brand-surface text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-carousel-previous aria-label="Show previous alumni"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg></button>
+              <button class="member-carousel-control inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-border bg-brand-surface text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-carousel-next aria-label="Show next alumni"><svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg></button>
+            </div>
+          )}
+        </div>
+
+        {alumniMembers.length > 0 ? (
+          <div class="relative -mx-1 mt-8 flex w-full snap-x snap-mandatory overflow-x-auto scroll-smooth px-1 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" data-member-carousel data-autoplay="10000" tabindex="0" aria-label="Alumni members">
+            {alumniSlides.map((slide) => (
+              <div class="grid w-full shrink-0 snap-start gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6" data-carousel-slide>
+                {slide.map((member) => {
+                  const avatar = getAvatar(member.data.photo);
+                  return (
+                    <button class="group flex flex-col items-center rounded-2xl border border-brand-border bg-brand-surface p-5 text-center shadow-sm transition hover:border-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-member-select={member.id} aria-controls="member-details" aria-expanded="false">
+                      <img class="h-20 w-20 shrink-0 rounded-full border border-brand-border object-cover group-hover:border-brand-rose" src={avatar.src} alt={`Open ${member.data.name}'s profile`} width="80" height="80" />
+                      <span class="mt-3 min-w-0"><span class="block font-bold text-brand-navy">{member.data.name}</span>{member.data.role && <span class="mt-1 block text-sm text-brand-muted">{member.data.role}</span>}{member.data.graduationYear && <span class="mt-2 block text-xs font-semibold text-brand-rose">Class of {member.data.graduationYear}</span>}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="mt-8 rounded-2xl border border-brand-border bg-brand-surface p-6 text-brand-muted">Alumni profiles will appear here.</p>
+        )}
+      </section>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const details = document.querySelector<HTMLElement>('#member-details');
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-member-panel]'));
+  const memberButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-member-select]'));
+
+  const openMember = (memberId: string, updateUrl = true) => {
+    const selectedPanel = panels.find((panel) => panel.dataset.memberPanel === memberId);
+    if (!details || !selectedPanel) return;
+
+    details.classList.remove('hidden');
+    panels.forEach((panel) => panel.classList.toggle('hidden', panel !== selectedPanel));
+    memberButtons.forEach((button) => button.setAttribute('aria-expanded', String(button.dataset.memberSelect === memberId)));
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('member', memberId);
+      url.hash = 'current-members';
+      window.history.replaceState({}, '', url);
+    }
+  };
+
+  memberButtons.forEach((button) => {
+    button.addEventListener('click', () => openMember(button.dataset.memberSelect ?? ''));
+  });
+
+  const initialMember = new URLSearchParams(window.location.search).get('member');
+  if (initialMember) openMember(initialMember, false);
+
+  document.querySelectorAll<HTMLElement>('[data-member-carousel]').forEach((carousel) => {
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>('[data-carousel-slide]'));
+    if (slides.length < 2) return;
+
+    const controls = carousel.parentElement?.querySelectorAll<HTMLButtonElement>('[data-carousel-previous], [data-carousel-next]') ?? [];
+    let timer: number | undefined;
+
+    const moveCarousel = (direction: 1 | -1) => {
+      const currentIndex = slides.reduce((closestIndex, slide, index) => {
+        const closestSlide = slides[closestIndex];
+        return Math.abs(slide.offsetLeft - carousel.scrollLeft) < Math.abs(closestSlide.offsetLeft - carousel.scrollLeft)
+          ? index
+          : closestIndex;
+      }, 0);
+      const nextIndex = (currentIndex + direction + slides.length) % slides.length;
+      carousel.scrollTo({ left: slides[nextIndex].offsetLeft, behavior: 'smooth' });
+    };
+
+    const stopAutoplay = () => {
+      if (timer) window.clearInterval(timer);
+    };
+
+    const startAutoplay = () => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopAutoplay();
+      timer = window.setInterval(() => moveCarousel(1), Number(carousel.dataset.autoplay) || 10000);
+    };
+
+    controls.forEach((control) => {
+      control.addEventListener('click', () => {
+        moveCarousel(control.hasAttribute('data-carousel-next') ? 1 : -1);
+        startAutoplay();
+      });
+    });
+
+    carousel.addEventListener('pointerenter', stopAutoplay);
+    carousel.addEventListener('pointerleave', startAutoplay);
+    carousel.addEventListener('focusin', stopAutoplay);
+    carousel.addEventListener('focusout', () => {
+      window.setTimeout(() => {
+        if (!carousel.matches(':focus-within')) startAutoplay();
+      });
+    });
+    startAutoplay();
+  });
+</script>
