@@ -1,0 +1,24 @@
+title: "Workshop 1: Introduction to High Performance Computing & Distributed Computing"
+description: |-
+  Ever wondered how supercomputers actually work, or wanted to run your code on a real CPU cluster instead of just your laptop?
+
+  Join us for Workshop 1: Introduction to High Performance Computing & Distributed Computing, brought to you by NTU HPC/AI and Innovation Lab @ NTU CCDS!
+
+  In this hands-on session, you will:
+  🖥️ Log into and use a supercomputer (Aspire2A) from your own laptop
+  ⚡ Send tasks to run on powerful CPUs, and monitor their progress
+  📋 Queue up your programs to run automatically using a simple job system (PBS)
+  🛠️ Compile and build code using common developer tools (GCC, CMake, MPI)
+  🌐 Run one program across multiple computers at once for extra speed
+
+  No prior HPC experience needed—this workshop is perfect for beginners who want a real head start on distributed computing. Whether you're into research or just curious about how large-scale systems work, this one's for you!
+
+startDate: 2026-08-21
+startTime: 6:30 PM
+endTime: 9:00 PM
+location: To Be Confirmed
+type: Workshop
+registrationUrl: "https://forms.cloud.microsoft/pages/responsepage.aspx?id=SJPOFSq-K0aPwOF2WpsgSvuRG29n4ZZCob9AMIFKsMZUQVI1MVFOV0FFTE5ORU9YVkpCWlNKSURMVS4u&route=shorturl"
+featured: true
+status: Upcoming
+draft: false

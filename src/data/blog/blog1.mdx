@@ -1,0 +1,77 @@
+---
+title: "What Is High Performance Computing (HPC)?"
+description: A beginner-friendly introduction to the principles and real-world applications of high performance computing.
+publishedDate: 2026-08-06
+authors:
+  - zi-hao-wee
+tags:
+  - HPC
+  - Beginner's Guide
+featured: true
+draft: false
+---
+
+import hpcParallelInfographic from './blog-images/what-is-hpc-parallel-computing.png';
+
+# What is High Performance Computing?
+
+Have you ever waited for a computer to finish something and thought, “There has to be a faster way”? For everyday tasks such as writing an essay, browsing the web, or editing a photo, a laptop is usually more than capable. But some questions are far too large for one computer to answer quickly.
+
+For example, how will a typhoon move over the next few days? Which possible drug molecules are worth testing in a laboratory? How can an engineer test the airflow around a new aircraft design? Problems like these involve enormous amounts of data and calculations.
+
+That is where **High Performance Computing**, or **HPC**, comes in.
+
+## HPC, simply explained
+
+HPC is a way of using many powerful computers together to solve a large problem faster than one ordinary computer could.
+
+You may also hear people call these systems *supercomputers*. A supercomputer can be a single extremely powerful system, but in practice, HPC often means a **cluster**: many computers connected together so they can work as a team.
+
+## Why use many computers?
+
+Imagine you have 10,000 books to sort. One person could do it, but it would take a very long time. If you divide the books among 100 people, the group can finish much sooner. Each person handles a smaller part, then the results are put back together.
+
+HPC works in a similar way. A large problem is broken into smaller pieces, and several computers tackle those pieces at the same time. Their results are then brought together to complete the overall task.
+
+<img src={hpcParallelInfographic.src} alt="An infographic showing a laptop splitting a large task across a cluster of computers before combining the results." />
+
+Not every task can be split perfectly, but when it can, parallel computing can save a huge amount of time.
+
+## What is inside an HPC cluster?
+
+You do not need to memorise every technical term to understand the basic picture. An HPC cluster usually has:
+
+- **Nodes:** the individual computers in the cluster.
+- **CPUs and GPUs:** the processors that perform the calculations. GPUs are especially useful for many AI and scientific workloads.
+- **A fast network:** lets the computers share information with one another quickly.
+- **Storage:** keeps the data and results used by the whole cluster.
+- **A scheduler:** manages the queue of work, deciding when a job can use the available computers.
+
+When someone wants to use the cluster, they submit a **job**. The scheduler finds suitable resources, runs the job, and lets the user collect the results afterwards. It is similar to booking a shared facility: everyone gets access, but the system helps prevent everyone from trying to use the same resources at once.
+
+## What does HPC help people do?
+
+HPC is often invisible in daily life, but it supports work that affects many of us.
+
+**Weather and climate:** Scientists use large models to simulate the atmosphere, oceans, temperature, and wind. Faster computation helps them produce forecasts and study long-term climate patterns.
+
+**Medicine and biology:** Researchers can analyse genomes, study proteins, and explore possible drug candidates. Computing does not replace laboratory work, but it can help researchers focus their experiments.
+
+**Engineering and design:** HPC can simulate how a car, building, aircraft, or energy system might behave before a physical prototype is built. This can make testing safer, faster, and less expensive.
+
+**Artificial intelligence:** Training and running modern AI models involves many repeated calculations. HPC systems, especially those with GPUs, provide the scale needed for large AI workloads.
+
+**Movies, games, and data:** Rendering visual effects, processing large datasets, and analysing scientific measurements can all benefit from many computers working in parallel.
+
+## Is HPC only for experts?
+
+Not at all. HPC can sound intimidating because the machines are powerful, but the first steps are approachable. You can begin by learning basic programming, trying out the Linux command line, or understanding how a simple program can use more than one processor.
+
+The most important idea is not “how do I build a supercomputer?” It is: **how can we divide a problem so computers can solve it together?** That question connects coding, mathematics, AI, science, and engineering.
+
+If you are curious about supercomputers, coding, or AI, you can find out more and get hands-on experience by joining the NTU HPC/AI club.
+
+## Sources
+
+- [AWS: What is High Performance Computing (HPC)?](https://aws.amazon.com/what-is/hpc/)
+- [IBM: What is high-performance computing (HPC)?](https://www.ibm.com/think/topics/hpc)
