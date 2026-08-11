@@ -2,14 +2,15 @@
 name: Example member — replace before publishing
 # Options: active, inactive, alumni
 status: active
-# Optional: role, photo, about, course, year, achievements, LinkedIn, email, and order
+# Optional: role, photo, about, course, year, competition experience, LinkedIn, email, and order
 role: Optional role
 # Store profile images in assets/member-images/. Use the image filename here.
 # Omit this field to use default-avatar.png automatically.
 about: Replace this draft example with an approved member profile.
 course: Example course
 year: Year 1
-achievements: []
+competitionExperience: [🏆ISC 2026 Onsite - 1st, 🥈ISC 2026 Virtual - 2nd, 🥉ISC 2024 Virtual - 3rd]
+# Must add the https://
 linkedin: https://www.linkedin.com/in/example
 email: example@ntu.edu.sg
 # Required. Year this person joined NTU HPC/AI. Format: YYYY
