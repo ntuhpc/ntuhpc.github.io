@@ -92,4 +92,28 @@ const social = defineCollection({
   }),
 });
 
-export const collections = { events, news, blog, social, team };
+const achievements = defineCollection({
+  loader: glob({ pattern: '**/*.{yaml,yml}', base: './src/data/achievements' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    competition: z.string(),
+    results: z.array(z.object({
+      placement: z.enum(['first', 'second', 'third', 'special']),
+      label: z.string(),
+    })).min(1),
+    summary: z.string(),
+    category: z.string().optional(),
+    location: z.string().optional(),
+    competitionLogo: z.string().optional(),
+    coverImage: z.string().optional(),
+    galleryFolder: z.string().regex(/^[a-z0-9][a-z0-9-]*$/).optional(),
+    about: z.string().optional(),
+    teamMembers: z.array(reference('team')).default([]),
+    externalUrl: z.string().url().optional(),
+    relatedArticle: z.string().startsWith('/').optional(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { events, news, blog, social, team, achievements };
