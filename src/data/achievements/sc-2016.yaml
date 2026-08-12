@@ -1,0 +1,13 @@
+title: SC16 Student Cluster Competition
+date: 2016-01-01
+yearOnly: true
+competition: Student Cluster Competition at the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC)
+results:
+  - placement: first
+    label: 1st Place — Secret Application (GROMACS)
+  - placement: special
+    label: 5th Place Overall
+summary: NTU HPC/AI placed 1st in the secret GROMACS application and 5th overall at the SC16 Student Cluster Competition.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false

@@ -1,0 +1,13 @@
+title: SC17 Student Cluster Competition
+date: 2017-01-01
+yearOnly: true
+competition: Student Cluster Competition at the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC)
+results:
+  - placement: first
+    label: Overall Championship
+  - placement: special
+    label: Highest LINPACK Award (51.77 TFLOPS)
+summary: NTU HPC/AI won the Overall Championship and Highest LINPACK Award at the SC17 Student Cluster Competition.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false

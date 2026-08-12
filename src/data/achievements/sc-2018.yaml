@@ -1,0 +1,13 @@
+title: SC18 Student Cluster Competition
+date: 2018-01-01
+yearOnly: true
+competition: Student Cluster Competition at the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC)
+results:
+  - placement: second
+    label: 2nd Place Overall
+  - placement: special
+    label: Highest LINPACK Award (56.51 TFLOPS)
+summary: NTU HPC/AI placed 2nd overall and received the Highest LINPACK Award at the SC18 Student Cluster Competition.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false
