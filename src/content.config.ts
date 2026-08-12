@@ -25,7 +25,7 @@ const events = defineCollection({
 
 const news = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/data/news' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
     publishedDate: z.coerce.date(),
@@ -34,7 +34,7 @@ const news = defineCollection({
     type: z.enum(['News', 'Announcement', 'Event Recap', 'Research Highlight']),
     category: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    coverImage: z.string().optional(),
+    coverImage: image().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
@@ -42,7 +42,7 @@ const news = defineCollection({
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/data/blog' }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
     publishedDate: z.coerce.date(),
@@ -50,7 +50,7 @@ const blog = defineCollection({
     authors: z.array(reference('team')).default([]),
     category: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    coverImage: z.string().optional(),
+    coverImage: image().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
