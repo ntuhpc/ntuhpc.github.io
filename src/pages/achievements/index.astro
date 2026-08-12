@@ -90,7 +90,7 @@ const getMembers = (achievementId: string) =>
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       {achievements.length > 0 ? (
         <div class="grid items-start gap-8 lg:grid-cols-[minmax(18rem,0.8fr)_minmax(0,1.2fr)]">
-          <section aria-labelledby="timeline-heading">
+          <section class="lg:max-h-screen lg:overflow-y-auto lg:pr-4" aria-labelledby="timeline-heading">
             <div class="flex items-end justify-between gap-4">
               <div>
                 <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Timeline</p>
@@ -131,7 +131,7 @@ const getMembers = (achievementId: string) =>
             </div>
           </section>
 
-          <section id="achievement-details" class="lg:sticky lg:top-6" aria-live="polite">
+          <section id="achievement-details" class="mt-8 lg:mt-0 lg:max-h-screen lg:overflow-y-auto lg:pr-4" aria-live="polite">
             {achievements.map((achievement, index) => {
               const images = Array.from(new Set([achievement.data.coverImage, ...getGallery(achievement.id)].filter(Boolean))) as string[];
               const members = getMembers(achievement.id);
