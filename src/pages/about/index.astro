@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import ntuHpcLogo from '../../../assets/brand/ntu-hpc-logo.png';
 import Layout from '../../layouts/Layout.astro';
 
 const disciplines = [
@@ -83,10 +85,12 @@ const competitions = [
   description="Meet the Nanyang Technological University High Performance Computing and AI team, learn what we do, and explore the student cluster competitions in which we participate."
 >
   <section class="relative isolate overflow-hidden bg-brand-navy text-brand-text-on-dark">
-    <img
-      src="/images/ntu-hpc-logo.png"
+    <Image
+      src={ntuHpcLogo}
       alt=""
       aria-hidden="true"
+      width={384}
+      height={384}
       class="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 object-contain opacity-50 sm:left-10 sm:translate-x-0 lg:left-[8%]"
     />
     <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-brand-navy/25 via-brand-navy/55 to-brand-navy" aria-hidden="true"></div>

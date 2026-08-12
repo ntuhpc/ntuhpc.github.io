@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import ntuHpcLogo from '../../../assets/brand/ntu-hpc-logo.png';
+
 const navigation = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about/' },
@@ -17,7 +20,7 @@ const isActive = (href: string) => href === '/' ? currentPath === '/' : currentP
 <header class="sticky top-0 z-50 border-b border-brand-border-dark bg-brand-navy/95 text-brand-text-on-dark backdrop-blur">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
     <a href="/" class="group flex items-center gap-3" aria-label="NTU HPC/AI home">
-      <img src="/images/ntu-hpc-logo.png" alt="" class="h-12 w-12 object-contain" />
+      <Image src={ntuHpcLogo} alt="" width={48} height={48} class="h-12 w-12 object-contain" />
       <span>
         <span class="block text-lg font-bold tracking-tight">NTU HPC/AI</span>
         <span class="block text-[0.65rem] uppercase tracking-[0.16em] text-slate-300">High Performance Computing &amp; AI</span>

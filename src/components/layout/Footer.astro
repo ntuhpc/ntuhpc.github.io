@@ -1,19 +1,21 @@
 ---
-const sponsorModules = import.meta.glob('../../../assets/sponsors/*.{png,jpg,jpeg,webp,avif,svg}', {
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const sponsorModules = import.meta.glob('../../../assets/sponsors/*.{png,jpg,jpeg,webp,avif}', {
   eager: true,
-  query: '?url',
   import: 'default',
-});
+}) as Record<string, ImageMetadata>;
 
 const isNtuLogo = (path: string) => /^ntu[_-]?logo\./i.test(path.split('/').pop() ?? '');
 
 const sponsorLogos = Object.entries(sponsorModules)
   .sort(([firstPath], [secondPath]) => Number(isNtuLogo(secondPath)) - Number(isNtuLogo(firstPath)))
-  .map(([path, src]) => {
+  .map(([path, image]) => {
     const filename = path.split('/').pop()?.replace(/\.[^.]+$/, '') ?? 'Sponsor logo';
 
     return {
-      src: src as string,
+      image,
       alt: filename.replace(/[_-]+/g, ' '),
     };
   });
@@ -27,7 +29,7 @@ const sponsorLogos = Object.entries(sponsorModules)
 
     <div class="flex flex-1 flex-wrap items-center justify-start gap-x-10 gap-y-6 lg:justify-center" aria-label="Partners and sponsors">
       {sponsorLogos.map((logo) => (
-        <img src={logo.src} alt={logo.alt} class="h-10 w-auto max-w-40 object-contain" loading="lazy" />
+        <Image src={logo.image} alt={logo.alt} height={40} class="h-10 w-auto max-w-40 object-contain" loading="lazy" />
       ))}
     </div>
 

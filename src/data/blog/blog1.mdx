@@ -12,6 +12,7 @@ featured: true
 draft: false
 ---
 
+import { Image } from 'astro:assets';
 import hpcParallelInfographic from './blog-images/what-is-hpc-parallel-computing.png';
 
 # What is High Performance Computing?
@@ -34,7 +35,7 @@ Imagine you have 10,000 books to sort. One person could do it, but it would take
 
 HPC works in a similar way. A large problem is broken into smaller pieces, and several computers tackle those pieces at the same time. Their results are then brought together to complete the overall task.
 
-<img src={hpcParallelInfographic.src} alt="An infographic showing a laptop splitting a large task across a cluster of computers before combining the results." />
+<Image src={hpcParallelInfographic} alt="An infographic showing a laptop splitting a large task across a cluster of computers before combining the results." />
 
 Not every task can be split perfectly, but when it can, parallel computing can save a huge amount of time.
 
