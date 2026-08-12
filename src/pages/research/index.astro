@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Research | NTU HPC/AI"
+  description="Research opportunities for motivated undergraduate and graduate students interested in high performance computing."
+>
+  <section class="relative overflow-hidden bg-brand-navy py-16 text-brand-text-on-dark sm:py-20">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_82%_50%,rgba(226,85,116,0.16),transparent_34%)]" aria-hidden="true"></div>
+    <svg class="absolute -right-10 top-1/2 hidden h-72 w-[42rem] -translate-y-1/2 lg:block" viewBox="0 0 680 300" fill="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="research-path" x1="90" y1="50" x2="610" y2="250" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#E25574" stop-opacity="0.15" />
+          <stop offset="0.5" stop-color="#E25574" stop-opacity="0.85" />
+          <stop offset="1" stop-color="#F06A86" stop-opacity="0.2" />
+        </linearGradient>
+        <pattern id="research-dots" width="24" height="24" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.5" fill="#F7F8FB" fill-opacity="0.12" />
+        </pattern>
+      </defs>
+      <rect x="45" y="18" width="600" height="264" fill="url(#research-dots)" />
+      <g stroke="url(#research-path)" stroke-width="2">
+        <path d="M82 82 208 126 332 74 459 125 602 76" />
+        <path d="M75 221 194 174 332 224 470 176 610 224" />
+        <path d="M208 126 194 174M332 74v150M459 125l11 51" />
+        <path d="M82 82c94 87 173 93 250 68s164-23 270 74" stroke-dasharray="7 9" />
+      </g>
+      <g fill="#E25574">
+        <circle cx="82" cy="82" r="5" /><circle cx="208" cy="126" r="6" /><circle cx="332" cy="74" r="5" />
+        <circle cx="459" cy="125" r="6" /><circle cx="602" cy="76" r="5" /><circle cx="75" cy="221" r="5" />
+        <circle cx="194" cy="174" r="6" /><circle cx="332" cy="224" r="5" /><circle cx="470" cy="176" r="6" /><circle cx="610" cy="224" r="5" />
+      </g>
+      <g transform="translate(284 101)" stroke="#F7F8FB" stroke-opacity="0.8" stroke-width="2">
+        <rect width="96" height="96" rx="16" fill="#101C34" stroke="#E25574" />
+        <rect x="27" y="27" width="42" height="42" rx="7" fill="#E25574" fill-opacity="0.14" />
+        <path d="M38 0v-13M58 0v-13M38 109V96M58 109V96M0 38h-13M0 58h-13M109 38H96M109 58H96" />
+        <path d="m38 50 8 8 15-19" stroke="#F06A86" stroke-width="3" />
+      </g>
+    </svg>
+    <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <p class="text-sm font-bold uppercase tracking-[0.16em] text-brand-rose">NTU HPC/AI</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-6xl">Research</h1>
+      <p class="mt-5 max-w-xl text-base leading-7 text-brand-text-on-dark/80 sm:text-lg">Explore opportunities in high performance computing and research-driven systems work.</p>
+    </div>
+  </section>
+
+  <section class="bg-brand-page py-16 sm:py-24">
+    <div class="mx-auto max-w-3xl px-6 lg:px-8">
+      <div class="rounded-3xl border border-brand-border bg-brand-surface p-8 text-center shadow-sm sm:p-12">
+        <span class="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-rose-soft text-brand-rose" aria-hidden="true">
+          <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4.5 21a7.5 7.5 0 0 1 15 0M18 4l2-2M6 4 4 2"></path>
+          </svg>
+        </span>
+        <h2 class="mt-6 text-3xl font-extrabold tracking-tight text-brand-navy">Interested in HPC research?</h2>
+        <p class="mx-auto mt-4 max-w-xl text-lg leading-8 text-brand-muted">
+          Self-motivated undergraduate and graduate students interested in high performance computing research are encouraged to contact Dr Wang Chen for more information and available research opportunities.
+        </p>
+        <a
+          class="mt-8 inline-flex items-center justify-center rounded-xl bg-brand-rose px-6 py-3 text-sm font-bold text-white transition hover:bg-brand-coral focus:outline-none focus:ring-2 focus:ring-brand-rose focus:ring-offset-2"
+          href="https://dr.ntu.edu.sg/entities/person/Chen-Wang"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View Dr Wang Chen's profile <span class="ml-2" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
