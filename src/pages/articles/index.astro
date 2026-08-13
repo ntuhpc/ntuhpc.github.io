@@ -46,20 +46,20 @@ const articles = [...news, ...blog].sort(
     </div>
   </section>
 
-  <section class="bg-brand-navy pb-16 pt-2 sm:pb-20">
+  <section class="bg-brand-page pb-16 pt-8 sm:pb-20 sm:pt-10">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div class="border-t border-brand-border-dark pt-6">
+      <div class="border-b border-brand-border pb-6">
         <div class="flex gap-1" role="tablist" aria-label="Article type">
           <button class="article-filter rounded-lg bg-brand-rose px-4 py-2 text-sm font-bold text-white" type="button" data-filter="all" aria-pressed="true">All</button>
-          <button class="article-filter rounded-lg px-4 py-2 text-sm font-bold text-brand-text-on-dark transition hover:bg-brand-navy-2" type="button" data-filter="news" aria-pressed="false">News</button>
-          <button class="article-filter rounded-lg px-4 py-2 text-sm font-bold text-brand-text-on-dark transition hover:bg-brand-navy-2" type="button" data-filter="blog" aria-pressed="false">Blogs</button>
+          <button class="article-filter rounded-lg px-4 py-2 text-sm font-bold text-brand-navy transition hover:bg-brand-rose-soft" type="button" data-filter="news" aria-pressed="false">News</button>
+          <button class="article-filter rounded-lg px-4 py-2 text-sm font-bold text-brand-navy transition hover:bg-brand-rose-soft" type="button" data-filter="blog" aria-pressed="false">Blogs</button>
         </div>
       </div>
 
       <div class="mt-6 space-y-4" data-article-list>
         {articles.map((article) => {
           return (
-            <article class="article-item overflow-hidden rounded-2xl border border-brand-border-dark bg-brand-navy-2 shadow-sm transition hover:border-brand-rose/70" data-article-type={article.filterType}>
+            <article class="article-item overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm transition hover:border-brand-rose hover:shadow-md" data-article-type={article.filterType}>
               <a class="grid grid-cols-[minmax(8.5rem,0.7fr)_minmax(0,1.3fr)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose sm:grid-cols-[15rem_minmax(0,1fr)]" href={article.href}>
                 {article.data.coverImage ? (
                   <Image class="h-full min-h-48 w-full object-cover" src={article.data.coverImage} alt="" widths={[272, 480, 720]} sizes="(min-width: 640px) 240px, 35vw" loading="lazy" />
@@ -69,10 +69,10 @@ const articles = [...news, ...blog].sort(
                 <div class="p-5 sm:p-7">
                   <div class="flex flex-wrap items-center gap-3 text-xs font-bold uppercase tracking-[0.12em]">
                     <span class="rounded-full bg-brand-rose/15 px-2.5 py-1 text-brand-rose">{article.articleType}</span>
-                    <time class="text-brand-text-on-dark/60" datetime={article.data.publishedDate.toISOString()}>{dateFormatter.format(article.data.publishedDate)}</time>
+                    <time class="text-brand-muted" datetime={article.data.publishedDate.toISOString()}>{dateFormatter.format(article.data.publishedDate)}</time>
                   </div>
-                  <h2 class="mt-3 text-lg font-extrabold tracking-tight text-brand-text-on-dark sm:mt-4 sm:text-2xl">{article.data.title}</h2>
-                  <p class="mt-2 max-w-3xl text-sm leading-6 text-brand-text-on-dark/75 sm:mt-3 sm:text-base sm:leading-7">{article.data.description}</p>
+                  <h2 class="mt-3 text-lg font-extrabold tracking-tight text-brand-navy sm:mt-4 sm:text-2xl">{article.data.title}</h2>
+                  <p class="mt-2 max-w-3xl text-sm leading-6 text-brand-muted sm:mt-3 sm:text-base sm:leading-7">{article.data.description}</p>
                   <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-rose">Read article <span aria-hidden="true">→</span></span>
                 </div>
               </a>
@@ -80,7 +80,7 @@ const articles = [...news, ...blog].sort(
           );
         })}
       </div>
-      <p class="mt-8 hidden rounded-xl border border-brand-border-dark p-5 text-center text-brand-text-on-dark/75" data-no-articles>No articles match your search.</p>
+      <p class="mt-8 hidden rounded-xl border border-brand-border bg-brand-surface p-5 text-center text-brand-muted" data-no-articles>No articles match your search.</p>
     </div>
   </section>
 </Layout>
@@ -109,7 +109,7 @@ const articles = [...news, ...blog].sort(
       button.setAttribute('aria-pressed', String(active));
       button.classList.toggle('bg-brand-rose', active);
       button.classList.toggle('text-white', active);
-      button.classList.toggle('text-brand-text-on-dark', !active);
+      button.classList.toggle('text-brand-navy', !active);
     });
     updateArticles();
   }));
