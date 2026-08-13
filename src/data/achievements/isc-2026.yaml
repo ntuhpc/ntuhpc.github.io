@@ -1,0 +1,27 @@
+title: ISC 2026 Student Cluster Competition
+date: 2026-06-25
+competition: ISC High Performance
+results:
+  - placement: first
+    label: Onsite Competition
+  - placement: second
+    label: Virtual Competition
+category: Student Cluster Competition
+location: Hamburg, Germany
+competitionLogo: /images/achievements/isc26/isc26-logo.png
+summary: NTU HPC/AI placed first in the onsite competition and second in the virtual competition at ISC 2026.
+about: >-
+  The team competed across two distinct HPC challenges. The virtual competition involved
+  running and tuning workloads remotely on the ROMEO supercomputer and Iris cluster,
+  while the onsite competition required students to assemble, operate, and optimise a
+  physical cluster under live-event time pressure.
+coverImage: /images/achievements/isc26/onsite.jpg
+galleryFolder: isc26
+teamMembers:
+  - zi-hao-wee
+  - zhu-zhanyan
+  - yuxuan-cao
+  - quang-pham
+  - yuma-ochi
+  - gu-boyuan
+draft: false

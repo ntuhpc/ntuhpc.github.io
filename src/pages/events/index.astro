@@ -1,0 +1,150 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+const events = (await getCollection('events'))
+  .filter((event) => !event.data.draft)
+  .sort((first, second) => first.data.startDate.getTime() - second.data.startDate.getTime());
+
+const calendarEvents = events.map((event) => ({
+  id: event.id,
+  title: event.data.title,
+  startDate: event.data.startDate.toISOString().slice(0, 10),
+  endDate: event.data.endDate?.toISOString().slice(0, 10),
+  startTime: event.data.startTime,
+  endTime: event.data.endTime,
+  location: event.data.location,
+  type: event.data.type,
+  status: event.data.status,
+  description: event.data.description.split('\n')[0],
+  registrationUrl: event.data.registrationUrl,
+  href: `/events/${event.id}/`,
+}));
+---
+
+<Layout title="Events | NTU HPC/AI" description="Workshops, competitions, talks, and community events from NTU HPC/AI.">
+  <section class="relative overflow-hidden bg-brand-navy py-16 text-brand-text-on-dark sm:py-20">
+    <div class="absolute inset-0 opacity-60" aria-hidden="true">
+      <div class="absolute -right-20 -top-32 h-80 w-80 rounded-full border border-brand-rose/25"></div>
+      <div class="absolute right-24 top-16 h-48 w-48 rounded-full border border-brand-text-on-dark/15"></div>
+      <svg class="absolute bottom-0 right-10 hidden h-48 w-80 text-brand-rose/40 lg:block" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="2"><rect x="62" y="19" width="198" height="139" rx="12"/><path d="M62 61h198M105 19v42M216 19v42M96 91h32M144 91h32M192 91h32M96 119h32M144 119h32"/><circle cx="208" cy="119" r="13" fill="#E25574" stroke="none"/></svg>
+    </div>
+    <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+      <p class="text-sm font-bold uppercase tracking-[0.16em] text-brand-rose">Learn, build, compete</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-6xl">Events</h1>
+      <p class="mt-5 max-w-2xl text-base leading-7 text-brand-text-on-dark/85 sm:text-lg">Workshops, competitions, sharing sessions, and community events for everyone interested in high performance computing and AI.</p>
+    </div>
+  </section>
+
+  <section class="bg-brand-page py-14 sm:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]">
+        <section class="rounded-3xl border border-brand-border bg-brand-surface p-5 shadow-sm sm:p-7" aria-labelledby="calendar-heading">
+          <div class="flex items-center justify-between gap-4">
+            <div>
+              <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Calendar</p>
+              <h2 id="calendar-heading" class="mt-2 text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl" data-calendar-month></h2>
+            </div>
+            <div class="flex gap-2">
+              <button class="rounded-xl border border-brand-border p-2 text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-calendar-previous aria-label="Previous month"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button class="rounded-xl border border-brand-border px-3 py-2 text-sm font-bold text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-calendar-today>Today</button>
+              <button class="rounded-xl border border-brand-border p-2 text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-calendar-next aria-label="Next month"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
+            </div>
+          </div>
+          <div class="mt-7 overflow-x-auto pb-2">
+            <div class="min-w-[42rem]">
+              <div class="grid grid-cols-7 border-x border-t border-brand-border bg-brand-page text-center text-xs font-bold uppercase tracking-[0.1em] text-brand-muted"><span class="py-3">Sun</span><span class="py-3">Mon</span><span class="py-3">Tue</span><span class="py-3">Wed</span><span class="py-3">Thu</span><span class="py-3">Fri</span><span class="py-3">Sat</span></div>
+              <div class="grid grid-cols-7 gap-px border border-brand-border bg-brand-border" data-calendar-grid></div>
+            </div>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold text-brand-muted"><span class="flex items-center gap-2"><i class="h-2.5 w-2.5 rounded-full bg-brand-rose"></i>Upcoming</span><span class="flex items-center gap-2"><i class="h-2.5 w-2.5 rounded-full bg-emerald-500"></i>Ongoing</span><span class="flex items-center gap-2"><i class="h-2.5 w-2.5 rounded-full bg-brand-muted"></i>Completed</span><span class="flex items-center gap-2"><i class="h-2.5 w-2.5 rounded-full bg-red-500"></i>Cancelled</span></div>
+        </section>
+
+        <aside class="rounded-3xl border border-brand-border bg-brand-surface p-6 shadow-sm sm:p-7" aria-live="polite">
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Schedule</p>
+          <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-brand-navy" data-selected-date></h2>
+          <div class="mt-6 space-y-4" data-selected-events></div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ calendarEvents }}>
+  const events = calendarEvents;
+  const grid = document.querySelector('[data-calendar-grid]');
+  const monthLabel = document.querySelector('[data-calendar-month]');
+  const selectedDateLabel = document.querySelector('[data-selected-date]');
+  const selectedEvents = document.querySelector('[data-selected-events]');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  let visibleMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  let selectedDate = new Date(today);
+
+  const dateKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+  const parseDate = (value) => new Date(`${value}T12:00:00`);
+  const formatDate = (date) => new Intl.DateTimeFormat('en-SG', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+  const statusStyles = { Upcoming: 'bg-brand-rose-soft text-brand-rose', Ongoing: 'bg-emerald-100 text-emerald-700', Completed: 'bg-brand-page text-brand-muted', Cancelled: 'bg-red-100 text-red-700' };
+  const markerStyles = { Upcoming: 'bg-brand-rose', Ongoing: 'bg-emerald-500', Completed: 'bg-brand-muted', Cancelled: 'bg-red-500' };
+  const calendarEventStyles = { Upcoming: 'border-brand-rose bg-brand-rose-soft text-brand-navy', Ongoing: 'border-emerald-500 bg-emerald-50 text-emerald-800', Completed: 'border-brand-muted bg-brand-page text-brand-muted', Cancelled: 'border-red-500 bg-red-50 text-red-700' };
+
+  const eventsForDate = (date) => events.filter((event) => {
+    const selectedDateKey = dateKey(date);
+    const endDateKey = event.endDate ?? event.startDate;
+    return selectedDateKey >= event.startDate && selectedDateKey <= endDateKey;
+  });
+
+  const renderDetails = () => {
+    selectedDateLabel.textContent = formatDate(selectedDate);
+    const dayEvents = eventsForDate(selectedDate);
+    selectedEvents.innerHTML = dayEvents.length ? dayEvents.map((event) => `
+      <article class="rounded-2xl border border-brand-border bg-brand-page p-4">
+        <div class="flex flex-wrap items-center gap-2"><span class="rounded-full px-2.5 py-1 text-xs font-bold ${statusStyles[event.status]}">${event.status}</span><span class="text-xs font-bold uppercase tracking-[0.1em] text-brand-muted">${event.type}</span></div>
+        <h3 class="mt-3 font-extrabold leading-6 text-brand-navy">${event.title}</h3>
+        ${event.startTime ? `<p class="mt-2 text-sm font-semibold text-brand-muted">${event.startTime}${event.endTime ? ` – ${event.endTime}` : ''}</p>` : ''}
+        <p class="mt-1 text-sm text-brand-muted">${event.location}</p>
+        <a class="mt-4 inline-flex text-sm font-bold text-brand-rose hover:text-brand-navy" href="${event.href}">View event →</a>
+      </article>`).join('') : '<p class="rounded-2xl border border-dashed border-brand-border p-5 text-sm leading-6 text-brand-muted">No events are scheduled for this day. Choose another date, or use the month controls to explore the calendar.</p>';
+  };
+
+  const renderCalendar = () => {
+    monthLabel.textContent = new Intl.DateTimeFormat('en-SG', { month: 'long', year: 'numeric' }).format(visibleMonth);
+    grid.innerHTML = '';
+    const firstWeekday = visibleMonth.getDay();
+    const daysInMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 0).getDate();
+    const totalCalendarCells = 42;
+    for (let blank = 0; blank < firstWeekday; blank += 1) {
+      grid.insertAdjacentHTML('beforeend', '<div class="aspect-square bg-brand-page" aria-hidden="true"></div>');
+    }
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
+      const dayEvents = eventsForDate(date);
+      const isToday = dateKey(date) === dateKey(today);
+      const isSelected = dateKey(date) === dateKey(selectedDate);
+      const markers = dayEvents.slice(0, 3).map((event) => `<i class="h-1.5 w-1.5 rounded-full ${markerStyles[event.status]}"></i>`).join('');
+      const eventTitles = dayEvents.slice(0, 2).map((event) => `<span class="block truncate border-l-2 px-1.5 py-1 text-[10px] font-bold leading-tight ${calendarEventStyles[event.status]}">${event.title}</span>`).join('');
+      const remainingEvents = dayEvents.length > 2 ? `<span class="block px-1 text-[10px] font-bold text-brand-muted">+${dayEvents.length - 2} more</span>` : '';
+      const cellStyle = isToday
+        ? 'bg-brand-rose-soft ring-2 ring-inset ring-brand-rose'
+        : isSelected
+          ? 'bg-brand-surface ring-2 ring-inset ring-brand-navy'
+          : 'bg-brand-surface hover:bg-brand-page';
+      grid.insertAdjacentHTML('beforeend', `<button class="aspect-square min-w-0 overflow-hidden p-2 text-left transition focus:z-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose ${cellStyle}" type="button" data-calendar-date="${dateKey(date)}" aria-label="${formatDate(date)}${dayEvents.length ? `, ${dayEvents.length} event${dayEvents.length === 1 ? '' : 's'}` : ''}${isToday ? ', today' : ''}" aria-pressed="${isSelected}"><span class="inline-flex h-7 w-7 items-center justify-center text-sm font-extrabold ${isToday ? 'rounded-full bg-brand-rose text-white' : 'text-brand-navy'}">${day}</span>${eventTitles ? `<span class="mt-1 block space-y-1">${eventTitles}${remainingEvents}</span>` : markers ? `<span class="mt-2 flex flex-wrap gap-1">${markers}</span>` : ''}</button>`);
+    }
+    const usedCells = firstWeekday + daysInMonth;
+    for (let blank = usedCells; blank < totalCalendarCells; blank += 1) {
+      grid.insertAdjacentHTML('beforeend', '<div class="aspect-square bg-brand-page" aria-hidden="true"></div>');
+    }
+    grid.querySelectorAll('[data-calendar-date]').forEach((button) => button.addEventListener('click', () => {
+      selectedDate = parseDate(button.dataset.calendarDate);
+      renderCalendar();
+      renderDetails();
+    }));
+  };
+
+  document.querySelector('[data-calendar-previous]')?.addEventListener('click', () => { visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() - 1, 1); renderCalendar(); });
+  document.querySelector('[data-calendar-next]')?.addEventListener('click', () => { visibleMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 1); renderCalendar(); });
+  document.querySelector('[data-calendar-today]')?.addEventListener('click', () => { visibleMonth = new Date(today.getFullYear(), today.getMonth(), 1); selectedDate = new Date(today); renderCalendar(); renderDetails(); });
+  renderCalendar();
+  renderDetails();
+</script>

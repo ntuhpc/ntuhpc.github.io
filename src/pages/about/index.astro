@@ -1,0 +1,220 @@
+---
+import { Image } from 'astro:assets';
+import ntuHpcLogo from '../../../assets/brand/ntu-hpc-logo.png';
+import Layout from '../../layouts/Layout.astro';
+
+const disciplines = [
+  {
+    title: 'Systems engineering',
+    description: 'Linux administration, job schedulers, storage, networking, and the software environments that keep a cluster usable.',
+    icon: 'server',
+  },
+  {
+    title: 'Performance engineering',
+    description: 'Benchmarking, profiling, bottleneck analysis, and code optimisation across processors and accelerators.',
+    icon: 'gauge',
+  },
+  {
+    title: 'Cluster hardware',
+    description: 'Compute nodes, CPUs, GPUs, interconnects, power limits, and the practical work of building a reliable system.',
+    icon: 'chip',
+  },
+  {
+    title: 'AI & scientific workloads',
+    description: 'Machine-learning and scientific applications that turn computing capability into useful results.',
+    icon: 'spark',
+  },
+];
+
+const pillars = [
+  {
+    number: '01',
+    title: 'Learn together',
+    description: 'Weekly sessions turn unfamiliar HPC concepts into practical skills that members can apply with confidence.',
+  },
+  {
+    number: '02',
+    title: 'Build and compete',
+    description: 'Competition gives us a demanding environment in which to configure systems, optimise workloads, and work as one team.',
+  },
+  {
+    number: '03',
+    title: 'Grow a community',
+    description: 'Members share knowledge across experience levels and help the next group of students take on bigger technical challenges.',
+  },
+];
+
+const competitions = [
+  {
+    shortName: 'ASC',
+    title: 'ASC Student Supercomputer Challenge',
+    setting: 'China · host university varies',
+    description: 'An international challenge initiated by the Asia Supercomputer Community. Finalists build clusters, run HPC and AI benchmarks, optimise real applications, and present their work.',
+    format: 'Online preliminary round and on-site final',
+    url: 'https://www.asc-events.net/StudentChallenge/index.html',
+  },
+  {
+    shortName: 'ISC',
+    title: 'ISC High Performance Student Cluster Competition',
+    setting: 'ISC High Performance · Europe',
+    description: 'Hosted as part of ISC High Performance, this competition exposes teams to scientific applications and production HPC systems through virtual and in-person segments.',
+    format: 'Virtual competition and on-site cluster challenge',
+    url: 'https://isc-hpc.com/program/student-cluster-competition/',
+  },
+  {
+    shortName: 'SC',
+    title: 'SC Student Cluster Competition',
+    setting: 'SC Conference · United States',
+    description: 'A 48-hour challenge at the International Conference for High Performance Computing, Networking, Storage, and Analysis. Teams build, operate, and tune a cluster against real scientific workloads.',
+    format: 'On-site challenge in a rotating U.S. host city',
+    url: 'https://supercomputing.org/',
+  },
+  {
+    shortName: 'HPC-AI',
+    title: 'APAC HPC-AI Competition',
+    setting: 'Asia-Pacific · remote',
+    description: 'An annual regional competition organised by the HPC-AI Advisory Council. Teams use shared supercomputing resources to tackle extended HPC and AI optimisation tasks.',
+    format: 'Multi-month remote competition',
+    url: 'https://hpcadvisorycouncil.atlassian.net/wiki/spaces/HPCWORKS/pages/1417641987/Competitions',
+  },
+];
+---
+
+<Layout
+  title="About Us | NTU HPC/AI"
+  description="Meet the Nanyang Technological University High Performance Computing and AI team, learn what we do, and explore the student cluster competitions in which we participate."
+>
+  <section class="relative isolate overflow-hidden bg-brand-navy text-brand-text-on-dark">
+    <Image
+      src={ntuHpcLogo}
+      alt=""
+      aria-hidden="true"
+      width={384}
+      height={384}
+      loading="eager"
+      fetchpriority="low"
+      class="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 object-contain opacity-50 sm:left-10 sm:translate-x-0 lg:left-[8%]"
+    />
+    <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-brand-navy/25 via-brand-navy/55 to-brand-navy" aria-hidden="true"></div>
+
+    <div class="relative mx-auto flex min-h-[34rem] max-w-7xl flex-col items-center justify-center px-6 py-20 text-center lg:px-8">
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-brand-rose">About NTU HPC/AI</p>
+      <h1 class="mt-5 max-w-4xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl">
+        Students building systems <span class="text-brand-rose">that perform.</span>
+      </h1>
+      <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-200">
+        We are Nanyang Technological University's student high performance computing and AI team. Based in Singapore, we train together, represent NTU in international student cluster competitions, and learn what it takes to make demanding workloads run well.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/team/" class="inline-flex items-center justify-center rounded-md bg-brand-rose px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-coral">
+          Meet the Team <span class="ml-3" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="/achievements/" class="inline-flex items-center justify-center rounded-md border border-brand-rose px-5 py-3 text-sm font-semibold text-brand-text-on-dark transition-colors hover:bg-brand-rose/10">
+          Our Achievements
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-surface py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Who we are</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-brand-navy sm:text-4xl">One team, several disciplines.</h2>
+        </div>
+        <p class="max-w-3xl leading-7 text-brand-muted">
+          A student cluster team needs more than fast hardware. Our members bring together systems administration, performance analysis, code optimisation, hardware knowledge, and machine learning to understand the whole computing stack.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {disciplines.map((discipline) => (
+          <article class="rounded-2xl border border-brand-border bg-brand-page p-6">
+            <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-rose-soft text-brand-rose" aria-hidden="true">
+              {discipline.icon === 'server' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></svg>}
+              {discipline.icon === 'gauge' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6"><path d="M20.4 15a9 9 0 1 0-16.8 0"/><path d="m12 12 4-4"/><path d="M6.3 17h11.4"/></svg>}
+              {discipline.icon === 'chip' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 1v3m6-3v3M9 20v3m6-3v3M1 9h3m-3 6h3m16-6h3m-3 6h3"/></svg>}
+              {discipline.icon === 'spark' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6"><path d="m12 3-1.7 5.3L5 10l5.3 1.7L12 17l1.7-5.3L19 10l-5.3-1.7L12 3Z"/><path d="m19 16-.7 2.3L16 19l2.3.7L19 22l.7-2.3L22 19l-2.3-.7L19 16Z"/></svg>}
+            </span>
+            <h3 class="mt-5 text-lg font-bold text-brand-navy">{discipline.title}</h3>
+            <p class="mt-3 text-sm leading-6 text-brand-muted">{discipline.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="border-y border-brand-border bg-brand-page py-16 sm:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">How we grow</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-brand-navy">Learn the craft. Take on the challenge.</h2>
+      </div>
+
+      <ol class="mt-10 grid overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm md:grid-cols-3">
+        {pillars.map((pillar, index) => (
+          <li class:list={['p-7', index > 0 && 'border-t border-brand-border md:border-l md:border-t-0']}>
+            <span class="text-sm font-extrabold tracking-[0.14em] text-brand-rose">{pillar.number}</span>
+            <h3 class="mt-5 text-xl font-bold text-brand-navy">{pillar.title}</h3>
+            <p class="mt-3 leading-7 text-brand-muted">{pillar.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section id="competitions" class="scroll-mt-24 bg-brand-navy-2 py-16 text-brand-text-on-dark sm:py-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Competition circuit</p>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Representing NTU on the global stage.</h2>
+        </div>
+        <p class="max-w-3xl leading-7 text-slate-200">
+          Student cluster competitions compress the work of an HPC centre into a team challenge: understand the applications, configure the system, measure performance, diagnose bottlenecks, and improve results under time and power constraints.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {competitions.map((competition) => (
+          <article class="flex flex-col rounded-2xl border border-brand-border bg-brand-surface p-6 text-brand-text shadow-sm sm:p-7">
+            <div class="flex items-start justify-between gap-5">
+              <div>
+                <p class="text-sm font-extrabold uppercase tracking-[0.14em] text-brand-rose">{competition.shortName}</p>
+                <h3 class="mt-3 text-xl font-bold leading-7 text-brand-navy">{competition.title}</h3>
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="h-6 w-6 shrink-0 text-brand-rose" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>
+            </div>
+
+            <p class="mt-4 flex items-start gap-2 text-sm font-semibold text-brand-muted">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="mt-0.5 h-4 w-4 shrink-0 text-brand-rose" aria-hidden="true"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              {competition.setting}
+            </p>
+            <p class="mt-4 flex-1 leading-7 text-brand-muted">{competition.description}</p>
+
+            <div class="mt-6 flex flex-col gap-4 border-t border-brand-border pt-5 sm:flex-row sm:items-center sm:justify-between">
+              <p class="text-sm font-medium text-brand-muted">{competition.format}</p>
+              <a href={competition.url} target="_blank" rel="noreferrer" class="inline-flex shrink-0 items-center text-sm font-bold text-brand-rose transition-colors hover:text-brand-coral">
+                Official site <span class="ml-2" aria-hidden="true">&nearr;</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-page py-16 sm:py-20">
+    <div class="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8">
+      <div class="max-w-2xl">
+        <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Weekly technical sessions</p>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-brand-navy">Preparation happens long before competition day.</h2>
+        <p class="mt-4 leading-7 text-brand-muted">We meet regularly to study Linux and HPC tools, practise parallel programming, evaluate benchmarks, and share what we learn from real systems.</p>
+      </div>
+      <a href="/contact/" class="inline-flex shrink-0 items-center justify-center rounded-md bg-brand-rose px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-coral">
+        Interested in Joining Us? <span class="ml-3" aria-hidden="true">&rarr;</span>
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,11 @@
+title: SC24 Student Cluster Competition
+date: 2024-01-01
+yearOnly: true
+competition: Student Cluster Competition at the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC)
+results:
+  - placement: special
+    label: Highest LINPACK Award (236.4 TFLOPS)
+summary: NTU HPC/AI received the Highest LINPACK Award at the SC24 Student Cluster Competition.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false

@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import ntuHpcLogo from '../../../assets/brand/ntu-hpc-logo.png';
+
+const navigation = [
+  { label: 'Home', href: '/' },
+  { label: 'About Us', href: '/about/' },
+  { label: 'Team', href: '/team/' },
+  { label: 'Achievements', href: '/achievements/' },
+  { label: 'News & Blogs', href: '/articles/' },
+  { label: 'Events', href: '/events/' },
+  { label: 'Research', href: '/research/' },
+  { label: 'Contact', href: '/contact/' },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="sticky top-0 z-50 border-b border-brand-border-dark bg-brand-navy/95 text-brand-text-on-dark backdrop-blur">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+    <a href="/" class="group flex items-center gap-3" aria-label="NTU HPC/AI home">
+      <Image src={ntuHpcLogo} alt="" width={48} height={48} class="h-12 w-12 object-contain" loading="eager" />
+      <span>
+        <span class="block text-lg font-bold tracking-tight">NTU HPC/AI</span>
+        <span class="block text-[0.65rem] uppercase tracking-[0.16em] text-slate-300">High Performance Computing &amp; AI</span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'rounded-md px-3 py-2 text-sm font-medium transition-colors hover:text-brand-coral',
+            isActive(item.href) ? 'text-brand-rose' : 'text-brand-text-on-dark',
+          ]}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <details class="relative lg:hidden">
+      <summary class="cursor-pointer list-none rounded-md border border-brand-border-dark px-3 py-2 text-sm font-semibold text-brand-text-on-dark hover:border-brand-rose hover:text-brand-coral">
+        Menu
+      </summary>
+      <nav class="absolute right-0 top-14 w-56 rounded-lg border border-brand-border-dark bg-brand-navy p-2 shadow-xl" aria-label="Mobile navigation">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'block rounded-md px-3 py-2 text-sm transition-colors hover:bg-brand-navy-2 hover:text-brand-coral',
+              isActive(item.href) ? 'text-brand-rose' : 'text-brand-text-on-dark',
+            ]}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </details>
+  </div>
+</header>

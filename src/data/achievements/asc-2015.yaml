@@ -1,0 +1,11 @@
+title: ASC 2015 Student Supercomputer Challenge
+date: 2015-01-01
+yearOnly: true
+competition: ASC Student Supercomputer Challenge
+results:
+  - placement: special
+    label: Highest LINPACK Award (11.92 TFLOPS)
+summary: NTU HPC/AI received the Highest LINPACK Award at ASC 2015.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false

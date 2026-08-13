@@ -1,0 +1,13 @@
+title: SC22 Student Cluster Competition
+date: 2022-01-01
+yearOnly: true
+competition: Student Cluster Competition at the International Conference for High Performance Computing, Networking, Storage, and Analysis (SC)
+results:
+  - placement: second
+    label: 2nd Place Overall
+  - placement: special
+    label: Best Poster
+summary: NTU HPC/AI placed 2nd overall and received the Best Poster award at the SC22 Student Cluster Competition.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false

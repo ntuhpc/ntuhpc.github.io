@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+  <title id="title">NTU HPC/AI article cover</title>
+  <desc id="desc">An abstract network and document illustration in NTU HPC/AI brand colours.</desc>
+  <rect width="800" height="500" fill="#101C34"/>
+  <g fill="none" stroke="#E25574" stroke-opacity=".35" stroke-width="2">
+    <path d="M-30 370 190 225l150 78 220-169L830 270"/>
+    <path d="M-10 120 180 228l150-125 195 102 255-116"/>
+  </g>
+  <g fill="#E25574" fill-opacity=".75"><circle cx="190" cy="225" r="7"/><circle cx="340" cy="303" r="7"/><circle cx="560" cy="134" r="7"/><circle cx="180" cy="228" r="7"/><circle cx="330" cy="103" r="7"/><circle cx="525" cy="205" r="7"/></g>
+  <g transform="translate(515 105)" fill="none" stroke="#F7F8FB" stroke-opacity=".9" stroke-width="8"><path d="M0 0h140l55 55v225H0z"/><path d="M140 0v55h55M35 110h125M35 155h125M35 200h95"/></g>
+  <text x="55" y="405" fill="#F7F8FB" font-family="Arial, sans-serif" font-size="42" font-weight="700">NTU HPC/AI</text>
+  <text x="55" y="448" fill="#F9D5DE" font-family="Arial, sans-serif" font-size="24">News &amp; Blogs</text>
+</svg>

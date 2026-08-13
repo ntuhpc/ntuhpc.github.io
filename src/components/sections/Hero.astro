@@ -1,0 +1,45 @@
+---
+import { Image } from 'astro:assets';
+import heroImage from '../../../assets/hero.jpg';
+---
+
+<section class="relative isolate overflow-hidden bg-brand-navy text-brand-text-on-dark">
+  <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div class="absolute -bottom-40 -left-24 h-96 w-[44rem] rounded-full border border-brand-rose/35"></div>
+    <div class="absolute -bottom-48 -left-8 h-96 w-[44rem] rounded-full border border-brand-rose/20"></div>
+    <div class="absolute right-[38%] top-0 h-full w-px bg-brand-border-dark/70"></div>
+  </div>
+
+  <div class="relative mx-auto grid max-w-7xl lg:grid-cols-[0.75fr_1.25fr]">
+    <div class="flex min-h-[30rem] flex-col justify-center px-6 py-20 lg:min-h-[22rem] lg:px-8 lg:py-6">
+      <h1 class="mt-4 max-w-2xl text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[2.75rem]">
+        Pushing the limits of <span class="text-brand-rose">HIGH PERFORMANCE COMPUTING.</span>
+      </h1>
+      <p class="mt-5 max-w-xl text-base leading-7 text-slate-200">
+        NTU High Performance Computing and AI (HPC/AI) is a student-run club driven by passion and curiosity. We build, optimise and innovate to solve real-world challenges through the power of computation and artificial intelligence.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="/about/" class="inline-flex items-center justify-center rounded-md bg-brand-rose px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-coral">
+          About Us <span class="ml-3" aria-hidden="true">&rarr;</span>
+        </a>
+        <a href="/achievements/" class="inline-flex items-center justify-center rounded-md border border-brand-rose px-4 py-2.5 text-sm font-semibold text-brand-text-on-dark transition-colors hover:bg-brand-rose/10">
+          Our Achievements
+        </a>
+      </div>
+    </div>
+
+    <div class="relative min-h-80 lg:min-h-[22rem]">
+      <Image
+        src={heroImage}
+        alt="NTU HPC/AI team members at a student cluster competition with their trophies"
+        class="absolute inset-0 h-full w-full object-cover object-right"
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 1024px) 55vw, 100vw"
+        format="webp"
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-linear-to-r from-brand-navy/75 via-brand-navy/10 to-transparent lg:from-brand-navy/45"></div>
+    </div>
+  </div>
+</section>

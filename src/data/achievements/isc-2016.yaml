@@ -1,0 +1,11 @@
+title: ISC 2016 Student Cluster Competition
+date: 2016-01-01
+yearOnly: true
+competition: ISC High Performance Student Cluster Competition
+results:
+  - placement: third
+    label: 3rd Place — HPL Benchmarking
+summary: NTU HPC/AI placed 3rd in HPL benchmarking at the ISC 2016 Student Cluster Competition.
+category: Student Cluster Competition
+about: Coming soon.
+draft: false

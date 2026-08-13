@@ -1,0 +1,29 @@
+---
+import { homeStats } from '../../data/homeStats';
+import StatIcon from '../ui/StatIcon.astro';
+---
+
+<section class="bg-brand-stat" aria-label="NTU HPC/AI at a glance">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid grid-cols-2 lg:grid-cols-4">
+      {homeStats.map((stat, index) => (
+        <div
+          class:list={[
+            'flex items-center gap-4 px-5 py-6 sm:px-7',
+            'border-brand-border-dark/80',
+            index < 2 && 'border-b lg:border-b-0',
+            index < 3 && 'lg:border-r',
+          ]}
+        >
+          <span class="h-10 w-10 shrink-0 text-brand-rose">
+            <StatIcon name={stat.icon} />
+          </span>
+          <div>
+            <p class="text-2xl font-bold tracking-tight text-brand-text-on-dark sm:text-3xl">{stat.value}</p>
+            <p class="mt-1 text-sm leading-5 text-slate-300">{stat.label}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

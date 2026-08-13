@@ -1,0 +1,33 @@
+# Copy this file, give it a clear filename, then replace the placeholder values.
+# Set draft to false when the achievement is ready to appear on the website.
+title: Example competition achievement
+# Use YYYY-MM-DD. The timeline automatically sorts newest achievements first.
+date: 2026-01-01
+competition: Competition or awarding body
+# Add one or more results. Placement options: first, second, third, special.
+# The website automatically shows the matching trophy, medal, or special-award icon.
+results:
+  - placement: first
+    label: Onsite Competition
+#  - placement: second
+#    label: Virtual Competition
+#  - placement: special
+#    label: Deep Learning Excellence Award
+summary: A short one- or two-sentence description shown in the timeline.
+# Optional: e.g. Student Cluster Competition, Research and Innovation, Community Award.
+category: Student Cluster Competition
+# Optional: city and country, or Online.
+location: Singapore
+# Optional: path to a competition logo saved in public/images/achievements/.
+# This logo appears only on the timeline card. If it is in galleryFolder, it is automatically excluded from the gallery.
+# competitionLogo: /images/achievements/example/logo.png
+# Optional: main image shown in the selected achievement panel.
+# coverImage: /images/achievements/example/cover.jpg
+# Optional: folder name under public/images/achievements/. Every image in this folder appears in the gallery.
+# The cover image is still selected separately above.
+# galleryFolder: example-achievement
+# Optional: a longer explanation shown after a visitor selects the achievement.
+# about: Explain what the competition involved, what the team did, or why this result matters.
+# Optional: team member IDs from src/data/team/. Add as many as needed.
+teamMembers: []
+draft: true

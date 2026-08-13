@@ -1,0 +1,38 @@
+---
+interface Props {
+  placement: 'first' | 'second' | 'third' | 'special';
+  label: string;
+  compact?: boolean;
+}
+
+const { placement, label, compact = false } = Astro.props;
+
+const placementLabel = {
+  first: '1st Place',
+  second: '2nd Place',
+  third: '3rd Place',
+  special: 'Special Award',
+}[placement];
+
+const placementEmoji = {
+  first: '\u{1F3C6}',
+  second: '\u{1F948}',
+  third: '\u{1F949}',
+  special: '\u{1F3C5}',
+}[placement];
+---
+
+{compact ? (
+  <span class="inline-flex items-center gap-2 rounded-xl border border-brand-border bg-brand-page px-2.5 py-1.5 text-xs font-bold text-brand-navy" aria-label={`${placementLabel}: ${label}`}>
+    <span class="text-lg leading-none" aria-hidden="true">{placementEmoji}</span>
+    <span><span class="text-brand-rose">{placementLabel}</span> · {label}</span>
+  </span>
+) : (
+  <div class="flex min-w-0 items-center gap-3 rounded-2xl border border-brand-border bg-brand-page px-4 py-3" aria-label={`${placementLabel}: ${label}`}>
+    <span class="text-3xl leading-none" aria-hidden="true">{placementEmoji}</span>
+    <div class="min-w-0">
+      <p class="text-sm font-extrabold text-brand-navy">{placementLabel}</p>
+      <p class="truncate text-sm font-semibold text-brand-muted">{label}</p>
+    </div>
+  </div>
+)}

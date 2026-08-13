@@ -1,0 +1,13 @@
+title: Example event — replace before publishing
+description: This is a draft example showing the fields needed for an event.
+# Date format: YYYY-MM-DD (for example, 2026-08-06)
+startDate: 2099-01-01
+startTime: 7:00 PM
+endTime: 9:00 PM
+location: Online
+# Options: Workshop, Competition, Weekly Meeting, Community Event, Sharing Session
+type: Weekly Meeting
+featured: false
+# Options: Upcoming, Ongoing, Completed, Cancelled
+status: Upcoming
+draft: true

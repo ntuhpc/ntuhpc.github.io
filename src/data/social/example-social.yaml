@@ -1,0 +1,11 @@
+# Options: Instagram, LinkedIn, X, YouTube, Facebook, Other
+platform: Other
+# Date format: YYYY-MM-DD (for example, 2026-08-06)
+publishedDate: 2099-01-01
+text: This is a draft example showing the fields needed for a social highlight.
+externalUrl: https://example.com
+# Optional for embeddable posts: paste the iframe's src URL and height from the platform's embed code.
+# embedUrl: "https://www.linkedin.com/embed/feed/update/..."
+# embedHeight: 627
+featured: false
+draft: true
