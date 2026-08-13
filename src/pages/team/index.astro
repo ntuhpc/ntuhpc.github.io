@@ -108,6 +108,7 @@ const visibleMembers = [...activeMembers, ...alumniMembers];
       <section id="member-details" class="mt-10 hidden scroll-mt-28" aria-live="polite">
         {visibleMembers.map((member) => {
           const avatar = getAvatar(member.data.photo);
+          const organisation = member.data.status === 'alumni' ? member.data.organisation : undefined;
           return (
             <article class="hidden rounded-3xl border border-brand-border bg-brand-surface p-6 shadow-sm sm:p-8" data-member-panel={member.id} aria-label={`${member.data.name}'s profile`}>
               <div class="flex flex-col gap-7 lg:flex-row lg:items-start">
@@ -115,7 +116,11 @@ const visibleMembers = [...activeMembers, ...alumniMembers];
                 <div class="min-w-0 flex-1">
                   <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">{member.data.status === 'alumni' ? 'Alumni' : 'Current member'}</p>
                   <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy">{member.data.name}</h2>
-                  {member.data.role && <p class="mt-1 font-semibold text-brand-rose">{member.data.role}</p>}
+                  {(member.data.role || organisation) && (
+                    <p class="mt-1 font-semibold text-brand-text">
+                      {member.data.role}{member.data.role && organisation && <span> at </span>}{organisation}
+                    </p>
+                  )}
                   {member.data.about && <p class="mt-5 max-w-2xl leading-7 text-brand-text">{member.data.about}</p>}
                   <div class="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-brand-muted">
                     {member.data.status !== 'alumni' && <span>Member since {member.data.memberSince}</span>}
@@ -175,9 +180,19 @@ const visibleMembers = [...activeMembers, ...alumniMembers];
                 {slide.map((member) => {
                   const avatar = getAvatar(member.data.photo);
                   return (
-                    <button class="group flex flex-col items-center rounded-2xl border border-brand-border bg-brand-surface p-5 text-center shadow-sm transition hover:border-brand-rose focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose" type="button" data-member-select={member.id} aria-controls="member-details" aria-expanded="false">
+                    <button class="group flex h-full w-full flex-col items-center rounded-2xl border border-brand-border bg-brand-surface p-5 text-center shadow-sm transition hover:border-brand-rose focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose" type="button" data-member-select={member.id} aria-controls="member-details" aria-expanded="false">
                       <Image class="h-20 w-20 shrink-0 rounded-full border border-brand-border object-cover group-hover:border-brand-rose" src={avatar} alt={`Open ${member.data.name}'s profile`} width={80} height={80} />
-                      <span class="mt-3 min-w-0"><span class="block font-bold text-brand-navy">{member.data.name}</span>{member.data.role && <span class="mt-1 block text-sm text-brand-muted">{member.data.role}</span>}{member.data.status === 'alumni' && member.data.graduationYear && <span class="mt-2 block text-xs font-semibold text-brand-rose">Class of {member.data.graduationYear}</span>}</span>
+                      <span class="mt-3 flex min-w-0 flex-1 flex-col items-center">
+                        <span class="flex min-h-10 items-center justify-center font-bold leading-5 text-brand-navy">{member.data.name}</span>
+                        <span class="mt-1 flex min-h-10 items-center justify-center text-sm font-medium leading-5 text-brand-muted">{member.data.role}</span>
+                        {member.data.organisation && (
+                          <span class="mt-3 block">
+                            <span class="block text-[0.65rem] font-bold uppercase tracking-[0.14em] text-brand-muted">Currently at</span>
+                            <span class="mt-1 block text-sm font-bold leading-5 text-brand-rose">{member.data.organisation}</span>
+                          </span>
+                        )}
+                        {member.data.status === 'alumni' && member.data.graduationYear && <span class="mt-auto block pt-3 text-xs font-semibold text-brand-muted">Class of {member.data.graduationYear}</span>}
+                      </span>
                     </button>
                   );
                 })}

@@ -87,6 +87,7 @@ draft: false
 | `name` | Yes | The member's display name. |
 | `status` | Yes | Exactly one of `active`, `inactive`, or `alumni`. Active members and alumni are displayed; inactive members remain in the repository but are hidden. |
 | `role` | No | The member's club role, such as `President` or `Technical Lead`. Omit it if the member has no specific role. |
+| `organisation` | No | For alumni, the current company, university, or organisation, such as `NSCC Singapore`. |
 | `photo` | No | Only the image filename from `assets/member-images/`, such as `zi-hao-wee.jpg`. Do not enter the full folder path. |
 | `about` | No | A short first-person or third-person biography. |
 | `course` | No | The member's course, such as `Computer Engineering`. |
