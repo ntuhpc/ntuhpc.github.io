@@ -62,6 +62,7 @@ const team = defineCollection({
     name: z.string(),
     status: z.enum(['active', 'inactive', 'alumni']),
     role: z.string().optional(),
+    organisation: z.string().optional(),
     photo: z.string().default('default-avatar.png'),
     about: z.string().optional(),
     course: z.string().optional(),
