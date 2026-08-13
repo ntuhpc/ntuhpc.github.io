@@ -3,7 +3,7 @@ name: Example member — replace before publishing
 # Options: active, inactive, alumni
 status: active
 # Optional: role, photo, about, course, year, competition experience, LinkedIn, email, and order
-role: Optional role
+role: Member
 # Store profile images in assets/member-images/. Use the image filename here.
 # Omit this field to use default-avatar.png automatically.
 about: Replace this draft example with an approved member profile.
