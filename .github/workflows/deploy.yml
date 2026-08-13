@@ -10,6 +10,12 @@ permissions:
   pages: write
   id-token: write
 
+# Allow one deployment at a time; queued runs wait instead of failing on an
+# in-progress deployment.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
