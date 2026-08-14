@@ -23,9 +23,9 @@ const placementEmoji = {
 ---
 
 {compact ? (
-  <span class="inline-flex items-center gap-2 rounded-xl border border-brand-border bg-brand-page px-2.5 py-1.5 text-xs font-bold text-brand-navy" aria-label={`${placementLabel}: ${label}`}>
+  <span class="flex w-full min-w-0 max-w-full items-center gap-2 rounded-xl border border-brand-border bg-brand-page px-2.5 py-1.5 text-xs font-bold text-brand-navy sm:inline-flex sm:w-auto" aria-label={`${placementLabel}: ${label}`}>
     <span class="text-lg leading-none" aria-hidden="true">{placementEmoji}</span>
-    <span><span class="text-brand-rose">{placementLabel}</span> · {label}</span>
+    <span class="min-w-0 break-words"><span class="text-brand-rose">{placementLabel}</span> · {label}</span>
   </span>
 ) : (
   <div class="flex min-w-0 items-center gap-3 rounded-2xl border border-brand-border bg-brand-page px-4 py-3" aria-label={`${placementLabel}: ${label}`}>
