@@ -23,16 +23,16 @@ const calendarEvents = events.map((event) => ({
 ---
 
 <Layout title="Events | NTU HPC/AI" description="Workshops, competitions, talks, and community events from NTU HPC/AI.">
-  <section class="relative overflow-hidden bg-brand-navy py-16 text-brand-text-on-dark sm:py-20">
+  <section class="relative flex min-h-[20rem] items-center overflow-hidden bg-brand-navy py-10 text-brand-text-on-dark">
     <div class="absolute inset-0 opacity-60" aria-hidden="true">
       <div class="absolute -right-20 -top-32 h-80 w-80 rounded-full border border-brand-rose/25"></div>
       <div class="absolute right-24 top-16 h-48 w-48 rounded-full border border-brand-text-on-dark/15"></div>
       <svg class="absolute bottom-0 right-10 hidden h-48 w-80 text-brand-rose/40 lg:block" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="2"><rect x="62" y="19" width="198" height="139" rx="12"/><path d="M62 61h198M105 19v42M216 19v42M96 91h32M144 91h32M192 91h32M96 119h32M144 119h32"/><circle cx="208" cy="119" r="13" fill="#E25574" stroke="none"/></svg>
     </div>
-    <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="relative mx-auto w-full max-w-7xl px-6 lg:px-8">
       <p class="text-sm font-bold uppercase tracking-[0.16em] text-brand-rose">Learn, build, compete</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-6xl">Events</h1>
-      <p class="mt-5 max-w-2xl text-base leading-7 text-brand-text-on-dark/85 sm:text-lg">Workshops, competitions, sharing sessions, and community events for everyone interested in high performance computing and AI.</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Events</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-brand-text-on-dark/85">Workshops, competitions, sharing sessions, and community events for everyone interested in high performance computing and AI.</p>
     </div>
   </section>
 
@@ -40,19 +40,19 @@ const calendarEvents = events.map((event) => ({
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       <div class="grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(18rem,0.65fr)]">
         <section class="rounded-3xl border border-brand-border bg-brand-surface p-5 shadow-sm sm:p-7" aria-labelledby="calendar-heading">
-          <div class="flex items-center justify-between gap-4">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Calendar</p>
               <h2 id="calendar-heading" class="mt-2 text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl" data-calendar-month></h2>
             </div>
-            <div class="flex gap-2">
+            <div class="flex justify-between gap-2 sm:justify-start">
               <button class="rounded-xl border border-brand-border p-2 text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-calendar-previous aria-label="Previous month"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
               <button class="rounded-xl border border-brand-border px-3 py-2 text-sm font-bold text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-calendar-today>Today</button>
               <button class="rounded-xl border border-brand-border p-2 text-brand-navy transition hover:border-brand-rose hover:text-brand-rose focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-calendar-next aria-label="Next month"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
             </div>
           </div>
-          <div class="mt-7 overflow-x-auto pb-2">
-            <div class="min-w-[42rem]">
+          <div class="mt-7 pb-2 sm:overflow-x-auto">
+            <div class="min-w-0 sm:min-w-[42rem]">
               <div class="grid grid-cols-7 border-x border-t border-brand-border bg-brand-page text-center text-xs font-bold uppercase tracking-[0.1em] text-brand-muted"><span class="py-3">Sun</span><span class="py-3">Mon</span><span class="py-3">Tue</span><span class="py-3">Wed</span><span class="py-3">Thu</span><span class="py-3">Fri</span><span class="py-3">Sat</span></div>
               <div class="grid grid-cols-7 gap-px border border-brand-border bg-brand-border" data-calendar-grid></div>
             </div>
@@ -114,7 +114,7 @@ const calendarEvents = events.map((event) => ({
     const daysInMonth = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth() + 1, 0).getDate();
     const totalCalendarCells = 42;
     for (let blank = 0; blank < firstWeekday; blank += 1) {
-      grid.insertAdjacentHTML('beforeend', '<div class="aspect-square bg-brand-page" aria-hidden="true"></div>');
+      grid.insertAdjacentHTML('beforeend', '<div class="min-h-14 bg-brand-page sm:aspect-square" aria-hidden="true"></div>');
     }
     for (let day = 1; day <= daysInMonth; day += 1) {
       const date = new Date(visibleMonth.getFullYear(), visibleMonth.getMonth(), day);
@@ -129,11 +129,11 @@ const calendarEvents = events.map((event) => ({
         : isSelected
           ? 'bg-brand-surface ring-2 ring-inset ring-brand-navy'
           : 'bg-brand-surface hover:bg-brand-page';
-      grid.insertAdjacentHTML('beforeend', `<button class="aspect-square min-w-0 overflow-hidden p-2 text-left transition focus:z-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose ${cellStyle}" type="button" data-calendar-date="${dateKey(date)}" aria-label="${formatDate(date)}${dayEvents.length ? `, ${dayEvents.length} event${dayEvents.length === 1 ? '' : 's'}` : ''}${isToday ? ', today' : ''}" aria-pressed="${isSelected}"><span class="inline-flex h-7 w-7 items-center justify-center text-sm font-extrabold ${isToday ? 'rounded-full bg-brand-rose text-white' : 'text-brand-navy'}">${day}</span>${eventTitles ? `<span class="mt-1 block space-y-1">${eventTitles}${remainingEvents}</span>` : markers ? `<span class="mt-2 flex flex-wrap gap-1">${markers}</span>` : ''}</button>`);
+      grid.insertAdjacentHTML('beforeend', `<button class="min-h-14 min-w-0 overflow-hidden p-1 text-left transition focus:z-10 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose sm:aspect-square sm:p-2 ${cellStyle}" type="button" data-calendar-date="${dateKey(date)}" aria-label="${formatDate(date)}${dayEvents.length ? `, ${dayEvents.length} event${dayEvents.length === 1 ? '' : 's'}` : ''}${isToday ? ', today' : ''}" aria-pressed="${isSelected}"><span class="inline-flex h-6 w-6 items-center justify-center text-xs font-extrabold sm:h-7 sm:w-7 sm:text-sm ${isToday ? 'rounded-full bg-brand-rose text-white' : 'text-brand-navy'}">${day}</span>${markers ? `<span class="mt-1 flex flex-wrap gap-0.5 sm:hidden">${markers}</span>` : ''}${eventTitles ? `<span class="mt-1 hidden space-y-1 sm:block">${eventTitles}${remainingEvents}</span>` : ''}</button>`);
     }
     const usedCells = firstWeekday + daysInMonth;
     for (let blank = usedCells; blank < totalCalendarCells; blank += 1) {
-      grid.insertAdjacentHTML('beforeend', '<div class="aspect-square bg-brand-page" aria-hidden="true"></div>');
+      grid.insertAdjacentHTML('beforeend', '<div class="min-h-14 bg-brand-page sm:aspect-square" aria-hidden="true"></div>');
     }
     grid.querySelectorAll('[data-calendar-date]').forEach((button) => button.addEventListener('click', () => {
       selectedDate = parseDate(button.dataset.calendarDate);

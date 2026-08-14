@@ -70,7 +70,7 @@ const getMembers = (achievementId: string) =>
 ---
 
 <Layout title="Our Achievements | NTU HPC/AI" description="Explore NTU HPC/AI's competition results and milestones.">
-  <section class="relative overflow-hidden bg-brand-navy py-16 text-brand-text-on-dark sm:py-20">
+  <section class="relative flex min-h-[20rem] items-center overflow-hidden bg-brand-navy py-10 text-brand-text-on-dark">
     <div class="absolute inset-0 opacity-60" aria-hidden="true">
       <div class="absolute -right-20 -top-28 h-80 w-80 rounded-full border border-brand-rose/30"></div>
       <div class="absolute right-16 top-16 h-52 w-52 rounded-full border border-brand-text-on-dark/15"></div>
@@ -81,19 +81,19 @@ const getMembers = (achievementId: string) =>
       <path d="M62 52H40c0 28 12 43 31 45M138 52h22c0 28-12 43-31 45M100 120v27M70 164h60M78 147h44" />
       <path d="m100 57 8 17 19 3-14 13 3 19-16-9-16 9 3-19-14-13 19-3 8-17Z" stroke="#E25574" />
     </svg>
-    <div class="relative mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="relative mx-auto w-full max-w-7xl px-6 lg:px-8">
       <p class="text-sm font-bold uppercase tracking-[0.16em] text-brand-rose">Competition and community milestones</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-6xl">Our Achievements</h1>
-      <p class="mt-5 max-w-2xl text-base leading-7 text-brand-text-on-dark/85 sm:text-lg">A growing record of the challenges NTU HPC/AI has taken on, the results earned, and the people behind them.</p>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Our Achievements</h1>
+      <p class="mt-4 max-w-2xl text-base leading-7 text-brand-text-on-dark/85">A growing record of the challenges NTU HPC/AI has taken on, the results earned, and the people behind them.</p>
     </div>
   </section>
 
   <section class="bg-brand-page py-14 sm:py-20">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
       {achievements.length > 0 ? (
-        <div class="grid items-start gap-8 lg:grid-cols-[minmax(18rem,0.8fr)_minmax(0,1.2fr)]">
-          <section class="lg:max-h-screen lg:overflow-y-auto lg:pr-4" aria-labelledby="timeline-heading">
-            <div class="flex items-end justify-between gap-4">
+        <div class="grid min-w-0 grid-cols-[minmax(0,1fr)] items-start gap-8 lg:grid-cols-[minmax(18rem,0.8fr)_minmax(0,1.2fr)]">
+          <section id="award-history" class="min-w-0 scroll-mt-24 lg:max-h-screen lg:overflow-y-auto lg:pr-4" aria-labelledby="timeline-heading">
+            <div class="flex min-w-0 flex-wrap items-end justify-between gap-4">
               <div>
                 <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">Timeline</p>
               <h2 id="timeline-heading" class="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy">Award History</h2>
@@ -101,15 +101,15 @@ const getMembers = (achievementId: string) =>
               <span class="rounded-full bg-brand-rose-soft px-3 py-1 text-sm font-bold text-brand-navy">{awardCount} {awardCount === 1 ? 'Award' : 'Awards'}</span>
             </div>
 
-            <div class="relative mt-8 space-y-9 before:absolute before:bottom-3 before:left-[11px] before:top-3 before:w-px before:bg-brand-border">
+            <div class="relative mt-8 min-w-0 space-y-9 before:absolute before:bottom-3 before:left-[11px] before:top-3 before:w-px before:bg-brand-border">
               {years.map((year) => (
-                <div>
+                <div class="min-w-0">
                   <h3 class="relative pl-8 text-xl font-extrabold text-brand-navy"><span class="absolute left-0 top-1.5 h-[23px] w-[23px] rounded-full border-4 border-brand-page bg-brand-rose"></span>{year}</h3>
-                  <div class="mt-4 space-y-4 pl-8">
+                  <div class="mt-4 min-w-0 space-y-4 pl-6 sm:pl-8">
                     {achievements.filter((achievement) => achievement.data.date.getFullYear() === year).map((achievement) => (
-                      <button class="achievement-select group w-full rounded-2xl border border-brand-border bg-brand-surface p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-brand-rose hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-rose" type="button" data-achievement-select={achievement.id} aria-controls="achievement-details" aria-expanded="false">
-                        <div class="grid grid-cols-[7rem_minmax(0,1fr)] gap-4">
-                          <div class="flex h-28 w-28 items-center justify-center">
+                      <button class="achievement-select group min-w-0 w-full max-w-full rounded-2xl border border-brand-border bg-brand-surface p-4 text-left shadow-sm transition hover:-translate-y-0.5 hover:border-brand-rose hover:shadow-md focus:outline-none focus:ring-2 focus:ring-brand-rose sm:p-5" type="button" data-achievement-select={achievement.id} aria-controls="achievement-details" aria-expanded="false">
+                        <div class="grid grid-cols-[4rem_minmax(0,1fr)] gap-3 sm:grid-cols-[7rem_minmax(0,1fr)] sm:gap-4">
+                          <div class="flex h-16 w-16 items-center justify-center sm:h-28 sm:w-28">
                             {achievement.data.competitionLogo ? (
                               <Image class="h-full w-full object-contain" src={achievement.data.competitionLogo} alt={`${achievement.data.competition} logo`} width={112} height={112} loading="lazy" />
                             ) : (
@@ -133,17 +133,20 @@ const getMembers = (achievementId: string) =>
             </div>
           </section>
 
-          <section id="achievement-details" class="mt-8 lg:mt-0 lg:max-h-screen lg:overflow-y-auto lg:pr-4" aria-live="polite">
+          <section id="achievement-details" class="min-w-0 mt-8 lg:mt-0 lg:max-h-screen lg:overflow-y-auto lg:pr-4" aria-live="polite">
             {achievements.map((achievement, index) => {
               const images = Array.from(new Set([achievement.data.coverImage, ...getGallery(achievement.id)].filter(Boolean))) as string[];
               const members = getMembers(achievement.id);
               const results = achievement.data.results;
               return (
-                <article class:list={["achievement-panel rounded-3xl border border-brand-border bg-brand-surface p-6 shadow-sm sm:p-8", { hidden: index !== 0 }]} data-achievement-panel={achievement.id} aria-label={`${achievement.data.title} details`}>
+                <article class:list={["achievement-panel scroll-mt-24 rounded-3xl border border-brand-border bg-brand-surface p-5 shadow-sm sm:p-8", { hidden: index !== 0 }]} data-achievement-panel={achievement.id} aria-label={`${achievement.data.title} details`}>
+                  <button class="mb-5 inline-flex items-center gap-2 text-sm font-bold text-brand-rose lg:hidden" type="button" data-achievement-back>
+                    <span aria-hidden="true">&larr;</span> Back to award history
+                  </button>
                   <div>
                     <div>
                       <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">{achievement.data.category ?? 'Achievement'}</p>
-                      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-brand-navy">{achievement.data.title}</h2>
+                      <h2 class="mt-2 text-2xl font-extrabold tracking-tight text-brand-navy sm:text-3xl">{achievement.data.title}</h2>
                       <p class="mt-3 text-sm font-semibold text-brand-muted">{formatAchievementDate(achievement)}{achievement.data.location && ` · ${achievement.data.location}`}</p>
                     </div>
                   </div>
@@ -209,7 +212,23 @@ const getMembers = (achievementId: string) =>
     buttons.forEach((button) => button.setAttribute('aria-expanded', String(button.dataset.achievementSelect === achievementId)));
   };
 
-  buttons.forEach((button) => button.addEventListener('click', () => openAchievement(button.dataset.achievementSelect ?? '')));
+  buttons.forEach((button) => button.addEventListener('click', () => {
+    const achievementId = button.dataset.achievementSelect ?? '';
+    openAchievement(achievementId);
+
+    if (window.matchMedia('(max-width: 1023px)').matches) {
+      panels.find((panel) => panel.dataset.achievementPanel === achievementId)?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }));
+
+  document.querySelectorAll<HTMLButtonElement>('[data-achievement-back]').forEach((button) => {
+    button.addEventListener('click', () => {
+      document.querySelector('#award-history')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   document.querySelectorAll<HTMLButtonElement>('[data-achievement-image]').forEach((button) => {
     button.addEventListener('click', () => {
