@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { getCollection } from 'astro:content';
 import defaultAvatar from '../../../assets/member-images/default-avatar.png';
+import teamSupernovaLogo from '../../../assets/brand/team-supernova-logo.jpg';
 import Layout from '../../layouts/Layout.astro';
 
 const avatarModules = import.meta.glob('../../../assets/member-images/*.{avif,jpeg,jpg,png,webp}', {
@@ -44,19 +45,19 @@ const visibleMembers = [...activeMembers, ...alumniMembers];
       <div class="absolute right-12 top-14 h-64 w-64 rounded-full border border-brand-text-on-dark/15"></div>
       <div class="absolute inset-x-0 bottom-0 h-40 bg-[radial-gradient(circle_at_center,rgba(226,85,116,0.28),transparent_62%)]"></div>
     </div>
-    <svg class="absolute right-4 top-1/2 hidden h-64 w-auto -translate-y-1/2 text-brand-text-on-dark/25 lg:block" viewBox="0 0 420 270" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
-      <circle cx="210" cy="70" r="30" />
-      <path d="M145 205v-22c0-36 29-65 65-65s65 29 65 65v22" />
-      <circle cx="110" cy="92" r="24" />
-      <path d="M56 211v-18c0-31 24-55 54-55 14 0 27 5 36 14" />
-      <circle cx="310" cy="92" r="24" />
-      <path d="M364 211v-18c0-31-24-55-54-55-14 0-27 5-36 14" />
-      <path d="M112 235h196" stroke="#E25574" stroke-width="3" />
-      <circle cx="210" cy="235" r="5" fill="#E25574" stroke="none" />
-    </svg>
+    <Image
+      src={teamSupernovaLogo}
+      alt=""
+      aria-hidden="true"
+      width={256}
+      height={256}
+      loading="eager"
+      fetchpriority="low"
+      class="pointer-events-none absolute right-10 top-1/2 hidden h-64 w-64 -translate-y-1/2 rounded-full object-cover opacity-50 lg:block"
+    />
     <div class="relative mx-auto w-full max-w-7xl px-6 lg:px-8">
       <p class="text-sm font-bold uppercase tracking-[0.16em] text-brand-rose">NTU HPC/AI</p>
-      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Our Team</h1>
+      <h1 class="mt-3 text-4xl font-extrabold tracking-tight sm:text-5xl">Team Supernova</h1>
       <div class="mt-4 max-w-2xl border-l-4 border-brand-rose pl-5 text-base leading-7 text-brand-text-on-dark/85">
         We are students, problem-solvers, and innovators brought together by a shared interest in HIGH PERFORMANCE COMPUTING and AI. We learn, build, compete, and grow as one community.
       </div>
