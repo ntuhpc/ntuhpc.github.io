@@ -10,6 +10,7 @@ about: Replace this draft example with an approved member profile.
 course: Example course
 year: Year 1
 # Use 🏆 for 1st, 🥈 for 2nd, 🥉 for 3rd, 🏅 for special award; This is for consistency purposes.
+# Include Virtual or Onsite for other competitions, but omit this label for HPC-AI.
 competitionExperience: [🏆ISC 2026 Onsite - 1st, 🥈ISC 2026 Virtual - 2nd, 🥉ISC 2024 Virtual - 3rd, 🏅ISC 2017 - Deep Learning Excellence Award]
 # Must add the https://
 linkedin: https://www.linkedin.com/in/example

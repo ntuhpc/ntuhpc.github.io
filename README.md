@@ -113,7 +113,7 @@ graduationYear: 2025
 Add a member's personal achievements under `competitionExperience`. Write every entry in this format:
 
 ```text
-<emoji> <contest name> <year> <Virtual/Onsite> - <placing or award>
+<emoji> <contest name> <year> [Virtual/Onsite] - <placing or award>
 ```
 
 For example:
@@ -122,7 +122,7 @@ For example:
 🏆 ISC 2026 Onsite - 1st
 ```
 
-Use `Virtual` or `Onsite` consistently to identify the competition format. Use these emoji and placing labels:
+Use `Virtual` or `Onsite` consistently to identify the competition format. Do not include either label for HPC-AI competitions. Use these emoji and placing labels:
 
 | Achievement | Emoji | Example |
 | --- | --- | --- |
