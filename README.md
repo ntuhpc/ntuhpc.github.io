@@ -8,8 +8,8 @@ Most website content is stored in YAML or MDX files. You usually do not need to 
 
 - [General file rules](#general-file-rules)
 - [Add a new team member](#add-a-new-team-member)
-- [Personal competition experience](#personal-competition-experience-and-trophy-conventions)
 - [Add a new event](#add-a-new-event)
+- [Add a social media post to the homepage](#add-a-social-media-post-to-the-homepage)
 - [Add a news article](#add-a-news-article)
 - [Add a blog post](#add-a-blog-post)
 - [Link an article to its authors](#link-an-article-to-its-authors)
@@ -208,6 +208,60 @@ draft: false
 | `draft` | No | `true` to hide the event everywhere or `false` to publish it. Defaults to `false`. |
 
 The homepage only shows events where `featured: true`, `draft: false`, and the status is `Upcoming` or `Ongoing`.
+
+## Add a social media post to the homepage
+
+Social media posts are YAML files in:
+
+```text
+src/data/social/
+```
+
+### Step 1: Copy and rename the social example
+
+Copy:
+
+```text
+src/data/social/example-social.yaml
+```
+
+Rename the copy using a short description of the post and its platform:
+
+```text
+src/data/social/isc26-linkedin.yaml
+```
+
+### Step 2: Fill in the social post fields
+
+For a LinkedIn embed, use:
+
+```yaml
+platform: LinkedIn
+publishedDate: 2026-07-22
+text: NTU HPC/AI at ISC26.
+externalUrl: https://www.linkedin.com/posts/example
+embedUrl: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:123456789?collapsed=1"
+embedHeight: 627
+featured: true
+draft: false
+```
+
+| Field | Required? | What to enter |
+| --- | --- | --- |
+| `platform` | Yes | Exactly one of `Instagram`, `LinkedIn`, `X`, `YouTube`, `Facebook`, or `Other`. |
+| `publishedDate` | Yes | The post date in `YYYY-MM-DD` format. This controls its position in the homepage carousel. |
+| `text` | Yes | A short description or fallback preview of the post. It is displayed when there is no `embedUrl`. |
+| `externalUrl` | Yes | The complete URL of the original social media post, including `https://`. |
+| `embedUrl` | No | The URL from the `src` attribute of the platform's iframe embed code. Do not paste the complete `<iframe>` element. |
+| `embedHeight` | No | The iframe height supplied by the platform, such as `627`. Do not include `px`. |
+| `handle` | No | An optional account name or handle displayed beneath the post. |
+| `image` | No | Reserved for an optional image path. The current homepage card does not display this field. |
+| `featured` | No | Must be `true` for the post to be eligible for the homepage. |
+| `draft` | No | Use `true` to hide the post or `false` to publish it. A draft never appears even when it is featured. |
+
+For LinkedIn, open the post's menu, choose **Embed this post**, and copy the URL inside the iframe's `src="..."` attribute into `embedUrl`. Copy the iframe's numeric `height` into `embedHeight`.
+
+The homepage displays the three newest posts where `featured: true` and `draft: false`. If more than three posts qualify, older posts remain in the repository but are not shown on the homepage.
 
 ## Add a news article
 
