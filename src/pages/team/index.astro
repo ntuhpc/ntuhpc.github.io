@@ -32,7 +32,15 @@ const members = (await getCollection('team'))
   });
 
 const activeMembers = members.filter((member) => member.data.status === 'active');
-const alumniMembers = members.filter((member) => member.data.status === 'alumni');
+const alumniMembers = members
+  .filter((member) => member.data.status === 'alumni')
+  .sort((first, second) => {
+    const firstGraduationYear = first.data.graduationYear ?? Number.NEGATIVE_INFINITY;
+    const secondGraduationYear = second.data.graduationYear ?? Number.NEGATIVE_INFINITY;
+
+    if (firstGraduationYear !== secondGraduationYear) return secondGraduationYear - firstGraduationYear;
+    return first.data.name.localeCompare(second.data.name);
+  });
 const activeSlides = chunk(activeMembers, 12);
 const alumniSlides = chunk(alumniMembers, 6);
 const visibleMembers = [...activeMembers, ...alumniMembers];
