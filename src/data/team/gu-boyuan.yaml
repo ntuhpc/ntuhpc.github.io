@@ -1,6 +1,11 @@
 name: Gu Boyuan
 status: active
 role: Member
-competitionExperience: []
+photo: gu-boyuan.jpg
+about: Agents on a loop, humans skimming through.
+course: Computer Science
+year: Year 3
+competitionExperience: [🏆ISC 2026 Onsite - 1st, 🥈ISC 2026 Virtual - 2nd, SC 2025 Onsite, HPC-AI 2025]
+linkedin: https://www.linkedin.com/in/gu-boyuan-a8aa402b1/
 memberSince: 2025
 draft: false
