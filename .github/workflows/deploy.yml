@@ -3,6 +3,10 @@ name: Deploy Astro to GitHub Pages
 on:
   push:
     branches: [master]
+  # Rebuild daily just after midnight Singapore time (UTC+8) so event
+  # statuses derived from dates (Upcoming/Ongoing/Completed) roll over.
+  schedule:
+    - cron: '5 16 * * *'
   workflow_dispatch:
 
 permissions:

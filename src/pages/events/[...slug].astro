@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getEventStatus } from '../../utils/eventStatus';
 
 const formatDate = (date: Date) =>
   new Intl.DateTimeFormat('en-SG', {
@@ -26,6 +27,7 @@ export async function getStaticPaths() {
 }
 
 const { event } = Astro.props;
+const status = getEventStatus(event.data);
 const eventDate = event.data.endDate && event.data.endDate.getTime() !== event.data.startDate.getTime()
   ? `${formatDate(event.data.startDate)} - ${formatDate(event.data.endDate)}`
   : formatDate(event.data.startDate);
@@ -44,7 +46,7 @@ const eventTime = event.data.startTime
       <header class="mt-8 border-b border-brand-border pb-8">
         <div class="flex flex-wrap items-center gap-3">
           <p class="text-sm font-bold uppercase tracking-[0.14em] text-brand-rose">{event.data.type}</p>
-          <span class:list={['rounded-full px-2.5 py-1 text-xs font-bold', statusStyles[event.data.status]]}>{event.data.status}</span>
+          <span class:list={['rounded-full px-2.5 py-1 text-xs font-bold', statusStyles[status]]}>{status}</span>
         </div>
         <h1 class="mt-4 text-4xl font-extrabold tracking-tight text-brand-navy sm:text-5xl">{event.data.title}</h1>
         <p class="mt-5 text-lg leading-8 text-brand-muted">{event.data.description.split('\n')[0]}</p>

@@ -8,6 +8,7 @@ location: Online
 # Options: Workshop, Competition, Weekly Meeting, Community Event, Sharing Session
 type: Weekly Meeting
 featured: false
-# Options: Upcoming, Ongoing, Completed, Cancelled
-status: Upcoming
+# Status (Upcoming, Ongoing, Completed) is derived automatically from the dates.
+# Set cancelled: true only if the event is called off.
+cancelled: false
 draft: true

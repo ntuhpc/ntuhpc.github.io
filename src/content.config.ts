@@ -18,7 +18,9 @@ const events = defineCollection({
     registrationDeadline: z.coerce.date().optional(),
     coverImage: z.string().optional(),
     featured: z.boolean().default(false),
-    status: z.enum(['Upcoming', 'Ongoing', 'Completed', 'Cancelled']),
+    // Upcoming/Ongoing/Completed are derived from the dates at build time;
+    // cancellation is the only status that must be declared by hand.
+    cancelled: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),
 });

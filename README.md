@@ -185,7 +185,6 @@ type: Workshop
 registrationUrl: https://example.com/registration
 registrationDeadline: 2026-09-10
 featured: true
-status: Upcoming
 draft: false
 ```
 
@@ -204,10 +203,10 @@ draft: false
 | `registrationDeadline` | No | Deadline in `YYYY-MM-DD` format. |
 | `coverImage` | No | An optional image path. |
 | `featured` | No | `true` to make it eligible for the homepage; otherwise `false`. Defaults to `false`. |
-| `status` | Yes | Exactly one of `Upcoming`, `Ongoing`, `Completed`, or `Cancelled`. This status—not today's date—controls whether a featured event can appear on the homepage. |
+| `cancelled` | No | `true` only if the event is called off. Defaults to `false`. There is no manual status field: `Upcoming`, `Ongoing`, and `Completed` are derived automatically from `startDate`/`endDate` using Singapore time (UTC+8). |
 | `draft` | No | `true` to hide the event everywhere or `false` to publish it. Defaults to `false`. |
 
-The homepage only shows events where `featured: true`, `draft: false`, and the status is `Upcoming` or `Ongoing`.
+The homepage only shows events where `featured: true`, `draft: false`, and the derived status is `Upcoming` or `Ongoing`. A scheduled deploy rebuilds the site daily just after midnight Singapore time so statuses roll over without a new commit.
 
 ## Add a social media post to the homepage
 
