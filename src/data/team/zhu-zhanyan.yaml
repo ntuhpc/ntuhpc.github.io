@@ -1,6 +1,27 @@
+# Required: member's display name
 name: Zhu Zhanyan
+# Options: active, inactive, alumni
 status: active
+# Optional: role, photo, about, course, year, competition experience, LinkedIn, email, and order
 role: Member
-competitionExperience: []
+# Store profile images in assets/member-images/. Use the image filename here.
+# Omit this field to use default-avatar.png automatically.
+about: Replace this draft example with an approved member profile.
+course: Computer Science
+year: Year 4
+# Use 🏆 for 1st, 🥈 for 2nd, 🥉 for 3rd, 🏅 for special award; This is for consistency purposes.
+# Include Virtual or Onsite for other competitions, but omit this label for HPC-AI.
+competitionExperience:
+  - "🏆 ISC 2026 Onsite - 1st"
+  - "🥈 ISC 2026 Virtual - 2nd"
+  - "SC 2025"
+  - "ISC 2025"
+# Must add the https://
+linkedin: "https://www.linkedin.com/in/zhu-zhanyan/"
+email: zzhu018@e.ntu.edu.sg
+# Required. Year this person joined NTU HPC/AI. Format: YYYY
 memberSince: 2025
+# Optional. Alumni graduation year, displayed as “Class of YYYY”. Format: YYYY
+graduationYear: 2026
+# Change this to false after you are done
 draft: false
