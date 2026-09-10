@@ -15,7 +15,9 @@ const news = (await getCollection('news'))
     ...article,
     articleType: article.data.type,
     filterType: 'news',
-    href: `/news/${article.id}/`,
+    href: article.data.externalUrl ?? `/news/${article.id}/`,
+    external: Boolean(article.data.externalUrl),
+    linkLabel: article.data.externalUrl ? (article.data.externalLabel ?? 'Read external article') : 'Read article',
   }));
 
 const blog = (await getCollection('blog'))
@@ -25,6 +27,8 @@ const blog = (await getCollection('blog'))
     articleType: 'Blog',
     filterType: 'blog',
     href: `/blog/${article.id}/`,
+    external: false,
+    linkLabel: 'Read article',
   }));
 
 const articles = [...news, ...blog].sort(
@@ -60,7 +64,7 @@ const articles = [...news, ...blog].sort(
         {articles.map((article) => {
           return (
             <article class="article-item overflow-hidden rounded-2xl border border-brand-border bg-brand-surface shadow-sm transition hover:border-brand-rose hover:shadow-md" data-article-type={article.filterType}>
-              <a class="grid grid-cols-[minmax(8.5rem,0.7fr)_minmax(0,1.3fr)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose sm:grid-cols-[15rem_minmax(0,1fr)]" href={article.href}>
+              <a class="grid grid-cols-[minmax(8.5rem,0.7fr)_minmax(0,1.3fr)] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-brand-rose sm:grid-cols-[15rem_minmax(0,1fr)]" href={article.href} target={article.external ? '_blank' : undefined} rel={article.external ? 'noreferrer' : undefined}>
                 {article.data.coverImage ? (
                   <Image class="h-full min-h-48 w-full object-cover" src={article.data.coverImage} alt="" widths={[272, 480, 720]} sizes="(min-width: 640px) 240px, 35vw" loading="lazy" />
                 ) : (
@@ -73,7 +77,7 @@ const articles = [...news, ...blog].sort(
                   </div>
                   <h2 class="mt-3 text-lg font-extrabold tracking-tight text-brand-navy sm:mt-4 sm:text-2xl">{article.data.title}</h2>
                   <p class="mt-2 max-w-3xl text-sm leading-6 text-brand-muted sm:mt-3 sm:text-base sm:leading-7">{article.data.description}</p>
-                  <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-rose">Read article <span aria-hidden="true">→</span></span>
+                  <span class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-brand-rose">{article.linkLabel} <span aria-hidden="true">→</span></span>
                 </div>
               </a>
             </article>

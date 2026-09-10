@@ -336,6 +336,8 @@ draft: false
 | `publishedDate` | Yes | Publication date in `YYYY-MM-DD` format. |
 | `updatedDate` | No | Date of a significant update in `YYYY-MM-DD` format. |
 | `coverImage` | No | Relative path from the MDX file, normally `./news-images/filename.jpg`. |
+| `externalUrl` | No | Complete URL of an externally hosted article. When set, the news card opens this URL instead of a local article page. The MDX body may be left empty. |
+| `externalLabel` | No | Link text for an external article, such as `Read on NTU`. Defaults to `Read external article`. |
 | `authors` | No | A YAML list of team member IDs. The ID must exactly match a filename in `src/data/team/` without `.yaml`. Multiple authors are supported. Use `authors: []` when there is no named author. |
 | `type` | Yes | Exactly one of `News`, `Announcement`, `Event Recap`, or `Research Highlight`. |
 | `category` | No | A broader grouping such as `Competitions` or `Workshops`. |

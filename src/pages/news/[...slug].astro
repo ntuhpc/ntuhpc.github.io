@@ -11,7 +11,7 @@ const formatDate = (date: Date) =>
   }).format(date);
 
 export async function getStaticPaths() {
-  const newsPosts = (await getCollection('news')).filter((post) => !post.data.draft);
+  const newsPosts = (await getCollection('news')).filter((post) => !post.data.draft && !post.data.externalUrl);
 
   return newsPosts.map((post) => ({
     params: { slug: post.id },
