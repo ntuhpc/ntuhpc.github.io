@@ -1,6 +1,11 @@
-name: Quang Pham
+name: Pham Ngoc Quang
 status: active
 role: Member
-competitionExperience: []
-memberSince: 2026
+photo: quang-pham.jpg
+about: Interested in hardware-aware optimization for accelerated computing workload. Interning at NTU HPC Centre.
+course: Electrical and Electronics Engineering
+year: Year 2
+competitionExperience: ["🏆ISC 2026 Onsite - 1st", "🥈ISC 2026 Virtual - 2nd"]
+linkedin: https://www.linkedin.com/in/ngoc-quang-pham-3b0272279/
+memberSince: 2025
 draft: false
