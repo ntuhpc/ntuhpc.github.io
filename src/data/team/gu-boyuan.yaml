@@ -1,6 +1,7 @@
 name: Gu Boyuan
 status: active
-role: Member
+role: President
+order: 1
 photo: gu-boyuan.jpg
 about: HPC - Humans Prompting Computers
 course: Computer Science

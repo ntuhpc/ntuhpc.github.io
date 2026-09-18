@@ -1,6 +1,7 @@
 name: Billy Cao
 status: active
-role: Member
+role: Vice-President
+order: 2
 photo: billy-cao.jpg
 about: I am interested in GPU performance engineering. Interning at SemiAnalysis.
 course: Computer Science
